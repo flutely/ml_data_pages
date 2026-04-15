@@ -2,6 +2,12 @@ project:
   type: website
   output-dir: docs
 
+execute:
+  enabled: true
+  echo: true
+  warning: true
+  error: true
+
 website:
   title: ML Research Analysis
   navbar:

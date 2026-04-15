@@ -11,7 +11,8 @@ This repository hosts a Quarto website for GitHub Pages.
 ## Build locally
 
 1. Install Quarto from https://quarto.org.
-2. Run:
+2. Install Python 3 and ensure it is available on your PATH.
+3. Run:
 
 ```bash
 quarto render
