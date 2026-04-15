@@ -14,6 +14,9 @@ website:
         href: tutorial.qmd
       - text: Report
         href: report.qmd
+      - text: Streamlit App
+      - text: GitHub
+        href: https://github.com/dallinmj/ml_research_trends
 
 format:
   html:

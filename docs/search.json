@@ -11,7 +11,7 @@
     "href": "index.html",
     "title": "Home",
     "section": "",
-    "text": "ML Research Analysis\nThis website documents out Stat 386 Final Projects\nInformation about the purpose and findings of the project can be found under the Report tab.\nInformation about the python package and how to install can be found under the Tutorial tab.\nOther information about the python package and the dataset can be found under the Documentation tab."
+    "text": "ML Research Analysis\nThis website documents out Stat 386 Final Projects\nInformation about the purpose and findings of the project can be found under the Report tab.\nInformation about the python package and how to install can be found under the Tutorial tab.\nOther information about the python package and the dataset can be found under the Documentation tab.\nA streamlit app to explore the data can be found under the Streamlit App tab.\nClick on Github Repo to see the github repository with the python package."
   },
   {
     "objectID": "documentation.html",

@@ -12,3 +12,7 @@ Information about the python package and how to install can be found under the _
 
 Other information about the python package and the dataset can be found under the _Documentation_ tab.
 
+A streamlit app to explore the data can be found under the _Streamlit App_ tab. 
+
+Click on _Github Repo_ to see the github repository with the python package.
+
