@@ -4,7 +4,7 @@
     "href": "tutorial.html",
     "title": "Tutorial",
     "section": "",
-    "text": "Tutorial\nThis section will explain how to install the Python package.\nThe code block below is executable and will run when the site is rendered. The output appears inline with the page.\n\n# Example Python code that will execute during Quarto render\nimport datetime\n\nprint(\"Hello from Quarto Python execution!\")\nprint(\"Rendered at:\", datetime.datetime.now())\n\nHello from Quarto Python execution!\nRendered at: 2026-04-15 17:47:25.089673\n\n\nYour own tutorial can include any Python code supported by the environment, including data loading, plotting, or model evaluation."
+    "text": "Tutorial\nThis section will explain how to install the Python package.\nThe code block below is executable and will run when the site is rendered. The output appears inline with the page.\n\n# Example Python code that will execute during Quarto render\nimport datetime\n\nprint(\"Hello from Quarto Python execution!\")\nprint(\"Rendered at:\", datetime.datetime.now())\n\nHello from Quarto Python execution!\nRendered at: 2026-04-15 17:50:29.261154\n\n\nYour own tutorial can include any Python code supported by the environment, including data loading, plotting, or model evaluation."
   },
   {
     "objectID": "index.html",
