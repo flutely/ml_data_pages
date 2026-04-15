@@ -7,31 +7,24 @@ nav.tabs a.active { background: #0969da; color: #ffffff; border-color: #0969da; 
 hr { border: none; border-top: 1px solid #d8dee4; margin: 2rem 0; }
 </style>
 
-# ML Data Pages
+# Tutorial
 
 <nav class="tabs">
-  <a href="index.md" class="active">Documentation</a>
-  <a href="tutorial.md">Tutorial</a>
+  <a href="index.md">Documentation</a>
+  <a href="tutorial.md" class="active">Tutorial</a>
   <a href="report.md">Report</a>
 </nav>
 
-## Documentation
+## Tutorial
 
-Welcome to the ML Data Pages documentation hub.
+This section is for tutorials and how-to guides.
 
-This site is built with Markdown and hosted on GitHub Pages. Use the tabs above to navigate between:
+### Example tutorial structure
 
-- **Documentation:** Reference information, API details, or project notes.
-- **Tutorial:** Step-by-step instructions and demos.
-- **Report:** Analysis, conclusions, and results.
+1. Introduction and objectives
+2. Installation and setup
+3. Step-by-step walkthrough
+4. Code examples and commands
+5. Results and next steps
 
-### Getting started
-
-Add your documentation content below or replace this section with your own project details.
-
-### Example content
-
-- Overview of the project and goals
-- Data sources and preprocessing steps
-- Model selection and evaluation approach
-- References and helpful links
+Replace this content with your project tutorial steps.
