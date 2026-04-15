@@ -8,3 +8,5 @@ pyyaml
 ipykernel
 nbformat
 jupyter-client
+notebook
+nbclient
