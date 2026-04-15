@@ -3,11 +3,13 @@ project:
   output-dir: docs
 
 website:
-  title: ML Data Pages
+  title: ML Research Analysis
   navbar:
     right:
-      - text: Documentation
+      - text: Home
         href: index.qmd
+      - text: Documentation
+        href: documentation.qmd
       - text: Tutorial
         href: tutorial.qmd
       - text: Report

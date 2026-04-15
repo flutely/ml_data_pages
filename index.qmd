@@ -1,26 +1,14 @@
 ---
-title: Documentation
+title: Home
 ---
 
-# Documentation
+# ML Research Analysis
 
-Welcome to the ML Data Pages documentation hub.
+This website documents out Stat 386 Final Projects
 
-This site is built with Quarto and hosted on GitHub Pages.
+Information about the purpose and findings of the project can be found under the _Report_ tab.
 
-Use the navigation above to switch between:
+Information about the python package and how to install can be found under the _Tutorial_ tab. 
 
-- **Documentation:** Reference information, API details, or project notes.
-- **Tutorial:** Step-by-step instructions and demos.
-- **Report:** Analysis, conclusions, and results.
+Other information about the python package and the dataset can be found under the _Documentation_ tab.
 
-## Getting started
-
-Add your documentation content below or replace this section with your own project details.
-
-## Example content
-
-- Overview of the project and goals
-- Data sources and preprocessing steps
-- Model selection and evaluation approach
-- References and helpful links

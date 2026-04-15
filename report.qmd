@@ -6,11 +6,10 @@ title: Report
 
 This page is for reporting results, conclusions, and final findings.
 
-## Example report sections
+## Motivating Questions
 
-- Summary of the analysis
-- Data and methods used
-- Key insights and metrics
-- Conclusions and recommendations
+## Methodology
 
-Replace this content with your report details.
+## Insights
+
+## Takeaways
