@@ -1,5 +1,6 @@
 project:
   type: website
+  output-dir: docs
 
 website:
   title: ML Data Pages
@@ -15,5 +16,3 @@ website:
 format:
   html:
     css: style.css
-
-output-dir: docs
