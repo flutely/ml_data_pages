@@ -1,0 +1,16 @@
+name: Build Quarto website
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: quarto-dev/quarto-actions/setup@v3
+        with:
+          quarto-version: latest
+      - run: quarto render
+      - run: ls -R docs

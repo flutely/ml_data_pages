@@ -1,0 +1,17 @@
+---
+title: Tutorial
+---
+
+# Tutorial
+
+This section is for tutorials and how-to guides.
+
+## Example tutorial structure
+
+1. Introduction and objectives
+2. Installation and setup
+3. Step-by-step walkthrough
+4. Code examples and commands
+5. Results and next steps
+
+Replace this content with your project tutorial steps.

@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "tutorial.html",
+    "href": "tutorial.html",
+    "title": "Tutorial",
+    "section": "",
+    "text": "This section is for tutorials and how-to guides.\n\n\n\nIntroduction and objectives\nInstallation and setup\nStep-by-step walkthrough\nCode examples and commands\nResults and next steps\n\nReplace this content with your project tutorial steps."
+  },
+  {
+    "objectID": "tutorial.html#example-tutorial-structure",
+    "href": "tutorial.html#example-tutorial-structure",
+    "title": "Tutorial",
+    "section": "",
+    "text": "Introduction and objectives\nInstallation and setup\nStep-by-step walkthrough\nCode examples and commands\nResults and next steps\n\nReplace this content with your project tutorial steps."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Documentation",
+    "section": "",
+    "text": "Welcome to the ML Data Pages documentation hub.\nThis site is built with Quarto and hosted on GitHub Pages.\nUse the navigation above to switch between:\n\nDocumentation: Reference information, API details, or project notes.\nTutorial: Step-by-step instructions and demos.\nReport: Analysis, conclusions, and results.\n\n\n\nAdd your documentation content below or replace this section with your own project details.\n\n\n\n\nOverview of the project and goals\nData sources and preprocessing steps\nModel selection and evaluation approach\nReferences and helpful links"
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "Documentation",
+    "section": "",
+    "text": "Add your documentation content below or replace this section with your own project details."
+  },
+  {
+    "objectID": "index.html#example-content",
+    "href": "index.html#example-content",
+    "title": "Documentation",
+    "section": "",
+    "text": "Overview of the project and goals\nData sources and preprocessing steps\nModel selection and evaluation approach\nReferences and helpful links"
+  },
+  {
+    "objectID": "report.html",
+    "href": "report.html",
+    "title": "Report",
+    "section": "",
+    "text": "This page is for reporting results, conclusions, and final findings.\n\n\n\nSummary of the analysis\nData and methods used\nKey insights and metrics\nConclusions and recommendations\n\nReplace this content with your report details."
+  },
+  {
+    "objectID": "report.html#example-report-sections",
+    "href": "report.html#example-report-sections",
+    "title": "Report",
+    "section": "",
+    "text": "Summary of the analysis\nData and methods used\nKey insights and metrics\nConclusions and recommendations\n\nReplace this content with your report details."
+  }
+]

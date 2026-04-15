@@ -1,18 +1,30 @@
 # ml_data_pages
 
-This repository hosts a GitHub Pages site built with Markdown.
+This repository hosts a Quarto website for GitHub Pages.
 
 ## Pages
 
-- [Documentation](index.md)
-- [Tutorial](tutorial.md)
-- [Report](report.md)
+- [Documentation](index.qmd)
+- [Tutorial](tutorial.qmd)
+- [Report](report.qmd)
+
+## Build locally
+
+1. Install Quarto from https://quarto.org.
+2. Run:
+
+```bash
+quarto render
+```
+
+The site will build into the `docs/` folder.
 
 ## Deploying to GitHub Pages
 
-1. In the repository settings, enable GitHub Pages from the `main` branch and use the root folder.
-2. Visit the site at `https://<your-github-username>.github.io/ml_data_pages` after publishing.
+1. In repository Settings, open GitHub Pages.
+2. Select the `main` branch and `docs/` folder as the site source.
+3. Save the settings.
 
-## Notes
+## Automation
 
-Each page includes a top navigation bar styled as tabs. Update the content in `index.md`, `tutorial.md`, and `report.md` to customize the site.
+A GitHub Actions workflow is included at `.github/workflows/quarto.yml`.
