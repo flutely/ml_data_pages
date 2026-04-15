@@ -7,6 +7,7 @@ execute:
   echo: true
   warning: true
   error: true
+  python: python
 
 website:
   title: ML Research Analysis

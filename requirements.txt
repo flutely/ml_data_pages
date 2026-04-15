@@ -1,0 +1,8 @@
+# Add Python packages required by your executable Quarto code here.
+# For example:
+# pandas
+# numpy
+# matplotlib
+
+pyyaml
+ipykernel
