@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: quarto-dev/quarto-actions/setup@v3
+      - uses: quarto-dev/quarto-actions/setup@v2
         with:
           quarto-version: latest
       - run: quarto render
