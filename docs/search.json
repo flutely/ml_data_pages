@@ -4,7 +4,7 @@
     "href": "tutorial.html",
     "title": "Tutorial",
     "section": "",
-    "text": "Tutorial\nThis section will explain how to install the Python package.\nThe code block below is executable and will run when the site is rendered. The output appears inline with the page.\n\n# Example Python code that will execute during Quarto render\nimport datetime\n\nprint(\"Hello from Quarto Python execution!\")\nprint(\"Rendered at:\", datetime.datetime.now())\n\nHello from Quarto Python execution!\nRendered at: 2026-04-15 17:52:07.673648\n\n\nYour own tutorial can include any Python code supported by the environment, including data loading, plotting, or model evaluation."
+    "text": "Tutorial\nThis section will explain how to install the Python package.\nThe code block below is executable and will run when the site is rendered. The output appears inline with the page.\n\n# Example Python code that will execute during Quarto render\nimport datetime\n\nprint(\"Hello from Quarto Python execution!\")\nprint(\"Rendered at:\", datetime.datetime.now())\n\nHello from Quarto Python execution!\nRendered at: 2026-04-16 18:30:21.263418\n\n\nYour own tutorial can include any Python code supported by the environment, including data loading, plotting, or model evaluation."
   },
   {
     "objectID": "index.html",
@@ -25,6 +25,34 @@
     "href": "report.html",
     "title": "Report",
     "section": "",
-    "text": "This page is for reporting results, conclusions, and final findings."
+    "text": "Hook (1–2 sentences):\nAI research has exploded in the past few years—but where is it actually going?\n\n\nTrack how major AI/LLM topics evolved from 2019–2026\n\n\n\nWhich AI topics grew the fastest from 2019 to 2026? Which topics had the highest publication volume each year? Which topics had the highest citation impact? How concentrated or diverse was AI research across topics over time? Did publication volume in selected topics increase after landmark papers?\n\n\n\n\n\n\nWe searched through several different database options for aquiring data about research papers. After exploring options such as OpenAlex and arXiv, we finally settled on SemanticScholar because their API easily provided sufficient data to analyze.\n\n\n\nWe used the following search terms when curating our dataset.\n\nllm\nCoT\nreasoning\nchain of thought\nrag\ngrounding\nexternal memory\nmultimodal\nimage generation\nrlhf\nlora\nqlora\nquantization\nefficient fine-tuning\nlong context and efficient\nsparse attention\nflash attention\nhallucination\nefficient inference\n\n\n\n\nThe resulting dataset had ___ distinct entries. Columns included the following: - title - authors - year - citations - abstract - paperId - influential_citations\n\n\n\n\n\n\n\n\n\n(Keep to 3–4 max)\nGPT-3 (2020) → scaling + few-shot RAG (2020) → retrieval-based models InstructGPT (2022) → alignment Chain-of-Thought (2022) → reasoning\nGoal:\nSee if these triggered growth in related topics\n\n\n\n\n(This is your main section—very scannable)\n\n\nTotal papers increased from [X] → [Y] Growth accelerated around [year]\nKey takeaway:\n[1 sentence insight]\n\n\n\n#1: [Topic] → +[X%] #2: [Topic] #3: [Topic]\nObservation:\n“Growth is concentrated in…” ### Most Popular Topics by Volume 2019: [Topic] 2022: [Topic] 2026: [Topic]\nTrend:\n“We see a shift from ___ → ___” ### Highest Impact Topics (Citations) [Topic] has highest avg citations [Topic] has high volume but lower impact\nInteresting insight:\n“Popular ≠ impactful because…” ### How Diverse Is AI Research? Early years: concentrated in [few topics] Later years: more spread out / more specialized\nInterpretation:\n“The field is becoming more [specialized/diverse]” ### Did Landmark Papers Change Trends?\nExample 1: GPT-3 (2020)\nBefore: [trend] After: [trend] “Clear increase in LLM-related work”\nExample 2: Chain-of-Thought (2022)\nspike in reasoning papers\n(Only include strong effects—skip weak ones)\n\n\n\n\n\n\nAI research is shifting toward [X] Some topics grow fast but don’t dominate volume Breakthrough papers can trigger rapid follow-on work\n\n\n\nTopic classification is imperfect arXiv bias (not all papers included) Citations lag behind recent work\n\n\n\nAI research is not just growing—it’s shifting direction Recent years show a move toward: [example: LLMs, reasoning, efficiency]\nClosing line (keep it punchy):\n“Understanding these trends helps us see not just where AI is—but where it’s going next.”"
+  },
+  {
+    "objectID": "report.html#motivation-behind-the-project",
+    "href": "report.html#motivation-behind-the-project",
+    "title": "Report",
+    "section": "",
+    "text": "Hook (1–2 sentences):\nAI research has exploded in the past few years—but where is it actually going?\n\n\nTrack how major AI/LLM topics evolved from 2019–2026\n\n\n\nWhich AI topics grew the fastest from 2019 to 2026? Which topics had the highest publication volume each year? Which topics had the highest citation impact? How concentrated or diverse was AI research across topics over time? Did publication volume in selected topics increase after landmark papers?"
+  },
+  {
+    "objectID": "report.html#methodology",
+    "href": "report.html#methodology",
+    "title": "Report",
+    "section": "",
+    "text": "We searched through several different database options for aquiring data about research papers. After exploring options such as OpenAlex and arXiv, we finally settled on SemanticScholar because their API easily provided sufficient data to analyze.\n\n\n\nWe used the following search terms when curating our dataset.\n\nllm\nCoT\nreasoning\nchain of thought\nrag\ngrounding\nexternal memory\nmultimodal\nimage generation\nrlhf\nlora\nqlora\nquantization\nefficient fine-tuning\nlong context and efficient\nsparse attention\nflash attention\nhallucination\nefficient inference\n\n\n\n\nThe resulting dataset had ___ distinct entries. Columns included the following: - title - authors - year - citations - abstract - paperId - influential_citations\n\n\n\n\n\n\n\n\n\n(Keep to 3–4 max)\nGPT-3 (2020) → scaling + few-shot RAG (2020) → retrieval-based models InstructGPT (2022) → alignment Chain-of-Thought (2022) → reasoning\nGoal:\nSee if these triggered growth in related topics"
+  },
+  {
+    "objectID": "report.html#insights",
+    "href": "report.html#insights",
+    "title": "Report",
+    "section": "",
+    "text": "(This is your main section—very scannable)\n\n\nTotal papers increased from [X] → [Y] Growth accelerated around [year]\nKey takeaway:\n[1 sentence insight]\n\n\n\n#1: [Topic] → +[X%] #2: [Topic] #3: [Topic]\nObservation:\n“Growth is concentrated in…” ### Most Popular Topics by Volume 2019: [Topic] 2022: [Topic] 2026: [Topic]\nTrend:\n“We see a shift from ___ → ___” ### Highest Impact Topics (Citations) [Topic] has highest avg citations [Topic] has high volume but lower impact\nInteresting insight:\n“Popular ≠ impactful because…” ### How Diverse Is AI Research? Early years: concentrated in [few topics] Later years: more spread out / more specialized\nInterpretation:\n“The field is becoming more [specialized/diverse]” ### Did Landmark Papers Change Trends?\nExample 1: GPT-3 (2020)\nBefore: [trend] After: [trend] “Clear increase in LLM-related work”\nExample 2: Chain-of-Thought (2022)\nspike in reasoning papers\n(Only include strong effects—skip weak ones)"
+  },
+  {
+    "objectID": "report.html#takeaways",
+    "href": "report.html#takeaways",
+    "title": "Report",
+    "section": "",
+    "text": "AI research is shifting toward [X] Some topics grow fast but don’t dominate volume Breakthrough papers can trigger rapid follow-on work\n\n\n\nTopic classification is imperfect arXiv bias (not all papers included) Citations lag behind recent work\n\n\n\nAI research is not just growing—it’s shifting direction Recent years show a move toward: [example: LLMs, reasoning, efficiency]\nClosing line (keep it punchy):\n“Understanding these trends helps us see not just where AI is—but where it’s going next.”"
   }
 ]
