@@ -4,12 +4,158 @@ title: Report
 
 # Report
 
-This page is for reporting results, conclusions, and final findings.
+## Motivation behind the project
 
-## Motivating Questions
+Hook (1–2 sentences):
+
+AI research has exploded in the past few years—but where is it actually going?
+
+### Goal:
+
+Track how major AI/LLM topics evolved from 2019–2026
+
+### Key Questions:
+
+Which AI topics grew the fastest from 2019 to 2026?
+Which topics had the highest publication volume each year?
+Which topics had the highest citation impact?
+How concentrated or diverse was AI research across topics over time?
+Did publication volume in selected topics increase after landmark papers?
 
 ## Methodology
 
+### Data Source
+
+We searched through several different database options for aquiring data about research papers. After exploring options such as OpenAlex and arXiv, we finally settled on SemanticScholar because their API easily provided sufficient data to analyze.
+
+### Search Terms
+We used the following search terms when curating our dataset. 
+
+- llm
+- CoT
+- reasoning
+- chain of thought
+- rag
+- grounding
+- external memory
+- multimodal
+- image generation
+- rlhf
+- lora
+- qlora
+- quantization
+- efficient fine-tuning
+- long context and efficient
+- sparse attention
+- flash attention
+- hallucination
+- efficient inference
+
+### Dataset
+
+The resulting dataset had ___ distinct entries.
+Columns included the following:
+- title
+- authors
+- year
+- citations
+- abstract
+- paperId
+- influential_citations	
+
+### Embedding
+
+### Analysis
+
+### Landmark Papers
+
+(Keep to 3–4 max)
+
+GPT-3 (2020) → scaling + few-shot
+RAG (2020) → retrieval-based models
+InstructGPT (2022) → alignment
+Chain-of-Thought (2022) → reasoning
+
+Goal:
+
+See if these triggered growth in related topics
+
 ## Insights
 
+(This is your main section—very scannable)
+
+### Overall Growth of AI Research
+Total papers increased from [X] → [Y]
+Growth accelerated around [year]
+
+Key takeaway:
+
+[1 sentence insight]
+
+### Fastest Growing Topics
+#1: [Topic] → +[X%]
+#2: [Topic]
+#3: [Topic]
+
+Observation:
+
+“Growth is concentrated in…”
+### Most Popular Topics by Volume
+2019: [Topic]
+2022: [Topic]
+2026: [Topic]
+
+Trend:
+
+“We see a shift from ___ → ___”
+### Highest Impact Topics (Citations)
+[Topic] has highest avg citations
+[Topic] has high volume but lower impact
+
+Interesting insight:
+
+“Popular ≠ impactful because…”
+### How Diverse Is AI Research?
+Early years: concentrated in [few topics]
+Later years: more spread out / more specialized
+
+Interpretation:
+
+“The field is becoming more [specialized/diverse]”
+### Did Landmark Papers Change Trends?
+
+Example 1: GPT-3 (2020)
+
+Before: [trend]
+After: [trend]
+“Clear increase in LLM-related work”
+
+Example 2: Chain-of-Thought (2022)
+
+spike in reasoning papers
+
+(Only include strong effects—skip weak ones)
+
 ## Takeaways
+
+### Key Insights
+
+AI research is shifting toward [X]
+Some topics grow fast but don’t dominate volume
+Breakthrough papers can trigger rapid follow-on work
+
+### Limitations
+
+Topic classification is imperfect
+arXiv bias (not all papers included)
+Citations lag behind recent work
+
+### Conclusion
+
+AI research is not just growing—it’s shifting direction
+Recent years show a move toward:
+[example: LLMs, reasoning, efficiency]
+
+Closing line (keep it punchy):
+
+“Understanding these trends helps us see not just where AI is—but where it’s going next.”
