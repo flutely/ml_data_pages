@@ -69,7 +69,7 @@ First you need to create your dataset using the SemanticScholar API. You can do 
 Pass in some keywords, your API key, and any other parameters.
 
 ```{python}
-df = collect_topic_data(
+collect_topic_data(
     keywords=["retrieval augmented generation", "RAG"],
     max_results_per_keyword=100,
     min_year=2020,
