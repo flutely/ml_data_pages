@@ -1,12 +1,16 @@
 ---
-title: Tutorial
+title: Getting Started
 ---
 
-# Tutorial
+The purpose of the `ml_research_trends` python package is to gather data, clean, and analyze machine learning topics and how they have changed over time. Research papers are taken from [SemanticScholar](https://www.semanticscholar.org/) using their API. 
 
-This section will explain how to install the Python package.
+## Requirements
 
-The code block below is executable and will run when the site is rendered. The output appears inline with the page.
+To use the ml_research_trends package you must have each of the following:
+
+- Python >= 3.11
+- Semantic Scholar API key (stored in a `.env` file)
+- `python-dotenv` package for loading environment variables
 
 ## Installation
 ```{bash}
@@ -16,11 +20,6 @@ Or with uv:
 ```{bash}
 uv add ml-research-trends
 ```
-
-## Requirements
-
-- Python >= 3.11
-- Semantic Scholar API key (set as environment variable `SEMANTIC_SCHOLAR_API_KEY`)
 
 ## Importing
 
@@ -41,3 +40,39 @@ from ml_research_trends import (
 )
 ```
 
+## Setting up API Key
+
+To load your API key from a `.env` file, use the `python-dotenv` package:
+
+```{python}
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get the API key
+SEMANTIC_SCHOLAR_API_KEY = os.getenv('SEMANTIC_SCHOLAR_API_KEY')
+```
+
+Make sure your `.env` file contains:
+```
+SEMANTIC_SCHOLAR_API_KEY=your_api_key_here
+```
+
+## Using the ml_research_trends package
+
+### Step 1: Gather Data
+
+First you need to create your dataset using the SemanticScholar API. You can do this using the `collect_topic_data` function.
+
+Pass in some keywords, your API key, and any other parameters.
+
+```{python}
+df = collect_topic_data(
+    keywords=["retrieval augmented generation", "RAG"],
+    max_results_per_keyword=100,
+    min_year=2020,
+    api_key=SEMANTIC_SCHOLAR_API_KEY
+)
+```

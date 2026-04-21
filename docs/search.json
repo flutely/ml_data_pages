@@ -2,30 +2,44 @@
   {
     "objectID": "tutorial.html",
     "href": "tutorial.html",
-    "title": "Tutorial",
+    "title": "Getting Started",
     "section": "",
-    "text": "This section will explain how to install the Python package.\nThe code block below is executable and will run when the site is rendered. The output appears inline with the page.\n\n\npip install ml-research-trends\nOr with uv:\nuv add ml-research-trends\n\n\n\n\nPython &gt;= 3.11\nSemantic Scholar API key (set as environment variable SEMANTIC_SCHOLAR_API_KEY)\n\n\n\n\nTo import the entire package:\n\nimport ml_research_trends\n\nTo import individual functions:\n\nfrom ml_research_trends import (\n    collect_topic_data,\n    summarize_topic_data,\n    analyze_topic_trends,\n    plot_topic_counts_by_year,\n    embed_and_plot_abstracts,\n    plot_landmark_timeline\n)"
-  },
-  {
-    "objectID": "tutorial.html#installation",
-    "href": "tutorial.html#installation",
-    "title": "Tutorial",
-    "section": "",
-    "text": "pip install ml-research-trends\nOr with uv:\nuv add ml-research-trends"
+    "text": "The purpose of the ml_research_trends python package is to gather data, clean, and analyze machine learning topics and how they have changed over time. Research papers are taken from SemanticScholar using their API."
   },
   {
     "objectID": "tutorial.html#requirements",
     "href": "tutorial.html#requirements",
-    "title": "Tutorial",
-    "section": "",
-    "text": "Python &gt;= 3.11\nSemantic Scholar API key (set as environment variable SEMANTIC_SCHOLAR_API_KEY)"
+    "title": "Getting Started",
+    "section": "Requirements",
+    "text": "Requirements\nTo use the ml_research_trends package you must have each of the following:\n\nPython &gt;= 3.11\nSemantic Scholar API key (stored in a .env file)\npython-dotenv package for loading environment variables"
+  },
+  {
+    "objectID": "tutorial.html#installation",
+    "href": "tutorial.html#installation",
+    "title": "Getting Started",
+    "section": "Installation",
+    "text": "Installation\npip install ml-research-trends\nOr with uv:\nuv add ml-research-trends"
   },
   {
     "objectID": "tutorial.html#importing",
     "href": "tutorial.html#importing",
-    "title": "Tutorial",
-    "section": "",
-    "text": "To import the entire package:\n\nimport ml_research_trends\n\nTo import individual functions:\n\nfrom ml_research_trends import (\n    collect_topic_data,\n    summarize_topic_data,\n    analyze_topic_trends,\n    plot_topic_counts_by_year,\n    embed_and_plot_abstracts,\n    plot_landmark_timeline\n)"
+    "title": "Getting Started",
+    "section": "Importing",
+    "text": "Importing\nTo import the entire package:\n\nimport ml_research_trends\n\nTo import individual functions:\n\nfrom ml_research_trends import (\n    collect_topic_data,\n    summarize_topic_data,\n    analyze_topic_trends,\n    plot_topic_counts_by_year,\n    embed_and_plot_abstracts,\n    plot_landmark_timeline\n)"
+  },
+  {
+    "objectID": "tutorial.html#setting-up-api-key",
+    "href": "tutorial.html#setting-up-api-key",
+    "title": "Getting Started",
+    "section": "Setting up API Key",
+    "text": "Setting up API Key\nTo load your API key from a .env file, use the python-dotenv package:\n\nfrom dotenv import load_dotenv\nimport os\n\n# Load environment variables from .env file\nload_dotenv()\n\n# Get the API key\nSEMANTIC_SCHOLAR_API_KEY = os.getenv('SEMANTIC_SCHOLAR_API_KEY')\n\nMake sure your .env file contains:\nSEMANTIC_SCHOLAR_API_KEY=your_api_key_here"
+  },
+  {
+    "objectID": "tutorial.html#using-the-ml_research_trends-package",
+    "href": "tutorial.html#using-the-ml_research_trends-package",
+    "title": "Getting Started",
+    "section": "Using the ml_research_trends package",
+    "text": "Using the ml_research_trends package\n\nStep 1: Gather Data\nFirst you need to create your dataset using the SemanticScholar API. You can do this using the collect_topic_data function.\nPass in some keywords, your API key, and any other parameters.\n\ndf = collect_topic_data(\n    keywords=[\"retrieval augmented generation\", \"RAG\"],\n    max_results_per_keyword=100,\n    min_year=2020,\n    api_key=SEMANTIC_SCHOLAR_API_KEY\n)\n\nFetching papers:   0%|          | 0/2 [00:00&lt;?, ?req/s]Fetching papers:   0%|          | 0/2 [00:00&lt;?, ?req/s, keyword=retrieval augmented generation]Fetching papers:  50%|█████     | 1/2 [00:01&lt;00:01,  1.45s/req, keyword=retrieval augmented generation]Fetching papers:  50%|█████     | 1/2 [00:01&lt;00:01,  1.45s/req, collected=0, keyword=retrieval augmented generation]Fetching papers:  50%|█████     | 1/2 [00:01&lt;00:01,  1.45s/req, keyword=RAG]                                        Fetching papers: 100%|██████████| 2/2 [00:02&lt;00:00,  1.44s/req, keyword=RAG]Fetching papers: 100%|██████████| 2/2 [00:02&lt;00:00,  1.44s/req, collected=100, keyword=RAG]Fetching papers: 100%|██████████| 2/2 [00:02&lt;00:00,  1.44s/req, collected=100, keyword=RAG]"
   },
   {
     "objectID": "index.html",

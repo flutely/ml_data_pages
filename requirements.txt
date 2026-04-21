@@ -10,3 +10,4 @@ nbformat
 jupyter-client
 notebook
 nbclient
+python-dotenv
