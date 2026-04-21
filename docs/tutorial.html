@@ -188,20 +188,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Tutorial</h1>
 <p>This section will explain how to install the Python package.</p>
 <p>The code block below is executable and will run when the site is rendered. The output appears inline with the page.</p>
-<div id="59043a38" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example Python code that will execute during Quarto render</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello from Quarto Python execution!"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rendered at:"</span>, datetime.datetime.now())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Hello from Quarto Python execution!
-Rendered at: 2026-04-16 18:30:21.263418</code></pre>
+<section id="installation" class="level2">
+<h2 class="anchored" data-anchor-id="installation">Installation</h2>
+<pre class="{bash}"><code>pip install ml-research-trends</code></pre>
+<p>Or with uv:</p>
+<pre class="{bash}"><code>uv add ml-research-trends</code></pre>
+</section>
+<section id="requirements" class="level2">
+<h2 class="anchored" data-anchor-id="requirements">Requirements</h2>
+<ul>
+<li>Python &gt;= 3.11</li>
+<li>Semantic Scholar API key (set as environment variable <code>SEMANTIC_SCHOLAR_API_KEY</code>)</li>
+</ul>
+</section>
+<section id="importing" class="level2">
+<h2 class="anchored" data-anchor-id="importing">Importing</h2>
+<p>To import the entire package:</p>
+<div id="71c855f2" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ml_research_trends</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> ml_research_trends
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'ml_research_trends'</pre>
 </div>
 </div>
-<p>Your own tutorial can include any Python code supported by the environment, including data loading, plotting, or model evaluation.</p>
+</div>
+<p>To import individual functions:</p>
+<div id="759c91e9" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ml_research_trends <span class="im">import</span> (</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    collect_topic_data,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    summarize_topic_data,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    analyze_topic_trends,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    plot_topic_counts_by_year,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    embed_and_plot_abstracts,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    plot_landmark_timeline</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> from ml_research_trends import (
+<span class="ansi-green-fg">      2</span>     collect_topic_data,
+<span class="ansi-green-fg">      3</span>     summarize_topic_data,
+<span class="ansi-green-fg">      4</span>     analyze_topic_trends,
+
+<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named 'ml_research_trends'</pre>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

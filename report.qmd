@@ -29,6 +29,7 @@ Did publication volume in selected topics increase after landmark papers?
 We searched through several different database options for aquiring data about research papers. After exploring options such as OpenAlex and arXiv, we finally settled on SemanticScholar because their API easily provided sufficient data to analyze.
 
 ### Search Terms
+
 We used the following search terms when curating our dataset. 
 
 - llm
@@ -85,6 +86,7 @@ See if these triggered growth in related topics
 (This is your main section—very scannable)
 
 ### Overall Growth of AI Research
+
 Total papers increased from [X] → [Y]
 Growth accelerated around [year]
 
@@ -93,6 +95,7 @@ Key takeaway:
 [1 sentence insight]
 
 ### Fastest Growing Topics
+
 #1: [Topic] → +[X%]
 #2: [Topic]
 #3: [Topic]
@@ -100,7 +103,9 @@ Key takeaway:
 Observation:
 
 “Growth is concentrated in…”
+
 ### Most Popular Topics by Volume
+
 2019: [Topic]
 2022: [Topic]
 2026: [Topic]
@@ -108,20 +113,25 @@ Observation:
 Trend:
 
 “We see a shift from ___ → ___”
+
 ### Highest Impact Topics (Citations)
+
 [Topic] has highest avg citations
 [Topic] has high volume but lower impact
 
 Interesting insight:
 
 “Popular ≠ impactful because…”
+
 ### How Diverse Is AI Research?
+
 Early years: concentrated in [few topics]
 Later years: more spread out / more specialized
 
 Interpretation:
 
 “The field is becoming more [specialized/diverse]”
+
 ### Did Landmark Papers Change Trends?
 
 Example 1: GPT-3 (2020)
