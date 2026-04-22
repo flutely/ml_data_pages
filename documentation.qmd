@@ -6,6 +6,11 @@ Reference for every function exposed by the `ml_research_trends` package.
 
 ---
 
+```{bash}
+#| echo: false
+uv add ml-research-trends
+```
+
 ```{python}
 #| echo: false
 from dotenv import load_dotenv
@@ -16,6 +21,17 @@ load_dotenv()
 
 # Get the API key
 SEMANTIC_SCHOLAR_API_KEY = os.getenv('SEMANTIC_SCHOLAR_API_KEY')
+
+import ml_research_trends
+from ml_research_trends import (
+    collect_topic_data,
+    summarize_topic_data,
+    analyze_topic_trends,
+    plot_topic_counts_by_year,
+    embed_and_plot_abstracts,
+    plot_landmark_timeline
+)
+
 ```
 
 ## `collect_topic_data`
@@ -57,8 +73,6 @@ A `pandas.DataFrame` with columns: `paper_id`, `title`, `authors`, `year`,
 **Example**
 
 ```{python}
-import ml_research_trends
-
 df = collect_topic_data(["chain of thought"], max_results_per_keyword=10, 
 api_key=SEMANTIC_SCHOLAR_API_KEY)
 ```
@@ -163,9 +177,6 @@ A DataFrame with columns `paper_id`, `title`, `year`, `x`, `y`.
 coords = embed_and_plot_abstracts(
     df,
     model_name_or_path="Qwen/Qwen3-Embedding-4B",
-    cache_path="rag_emb.npy",
-    save_path="rag_umap.png",
-    html_path="rag_umap.html",
 )
 ```
 

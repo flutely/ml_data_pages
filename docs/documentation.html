@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,6 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="style.css">
@@ -185,6 +188,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Reference for every function exposed by the <code>ml_research_trends</code> package.</p>
 <hr>
+<pre class="{bash}"><code>#| echo: false
+uv add ml-research-trends</code></pre>
 <section id="collect_topic_data" class="level2">
 <h2 class="anchored" data-anchor-id="collect_topic_data"><code>collect_topic_data</code></h2>
 <pre><code>collect_topic_data(
@@ -213,23 +218,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Returns</strong></p>
 <p>A <code>pandas.DataFrame</code> with columns: <code>paper_id</code>, <code>title</code>, <code>authors</code>, <code>year</code>, <code>citation_count</code>, <code>abstract</code>, <code>url</code>, <code>venue</code>, <code>keyword</code>.</p>
 <p><strong>Example</strong></p>
-<div id="3005f60a" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ml_research_trends</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> collect_topic_data([<span class="st">"chain of thought"</span>], max_results_per_keyword<span class="op">=</span><span class="dv">10</span>, </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>api_key<span class="op">=</span>SEMANTIC_SCHOLAR_API_KEY)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[2]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> ml_research_trends
-<span class="ansi-green-fg">      2</span> 
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> df = collect_topic_data(["chain of thought"], max_results_per_keyword=10, 
-<span class="ansi-green-fg">      4</span> api_key=SEMANTIC_SCHOLAR_API_KEY)
-
-<span class="ansi-red-fg">NameError</span>: name 'collect_topic_data' is not defined</pre>
-</div>
+<div id="31e811f9" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> collect_topic_data([<span class="st">"chain of thought"</span>], max_results_per_keyword<span class="op">=</span><span class="dv">10</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>api_key<span class="op">=</span>SEMANTIC_SCHOLAR_API_KEY)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Fetching papers:   0%|          | 0/1 [00:00&lt;?, ?req/s]Fetching papers:   0%|          | 0/1 [00:00&lt;?, ?req/s, keyword=chain of thought]Fetching papers: 100%|██████████| 1/1 [00:00&lt;00:00,  1.06req/s, keyword=chain of thought]Fetching papers: 100%|██████████| 1/1 [00:00&lt;00:00,  1.06req/s, collected=0, keyword=chain of thought]Fetching papers: 100%|██████████| 1/1 [00:00&lt;00:00,  1.06req/s, collected=0, keyword=chain of thought]</code></pre>
 </div>
 </div>
 <hr>
@@ -239,19 +232,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>summarize_topic_data(df) -&gt; dict</code></pre>
 <p>Return a dictionary of quick stats about a topic DataFrame: <code>total_papers</code>, <code>year_min</code>, <code>year_max</code>, <code>average_citations</code>, <code>median_citations</code>, <code>missing_abstracts</code>, and <code>top_venues</code>.</p>
 <p><strong>Example</strong></p>
-<div id="593c3281" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summarize_topic_data(df)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary[<span class="st">"total_papers"</span>], summary[<span class="st">"year_min"</span>], summary[<span class="st">"year_max"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[3]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> summary = summarize_topic_data(df)
-<span class="ansi-green-fg">      2</span> print(summary[<span class="ansi-yellow-fg">"total_papers"</span>], summary[<span class="ansi-yellow-fg">"year_min"</span>], summary[<span class="ansi-yellow-fg">"year_max"</span>])
-
-<span class="ansi-red-fg">NameError</span>: name 'summarize_topic_data' is not defined</pre>
-</div>
+<div id="e8a90571" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summarize_topic_data(df)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary[<span class="st">"total_papers"</span>], summary[<span class="st">"year_min"</span>], summary[<span class="st">"year_max"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>10 2022 2025</code></pre>
 </div>
 </div>
 <hr>
@@ -261,18 +246,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>analyze_topic_trends(df) -&gt; pandas.DataFrame</code></pre>
 <p>Group papers by year and compute <code>paper_count</code>, <code>average_citations</code>, and <code>median_citations</code>. Useful input for <code>plot_topic_counts_by_year</code>.</p>
 <p><strong>Example</strong></p>
-<div id="176c5f6a" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>trends <span class="op">=</span> analyze_topic_trends(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> trends = analyze_topic_trends(df)
-
-<span class="ansi-red-fg">NameError</span>: name 'analyze_topic_trends' is not defined</pre>
-</div>
-</div>
+<div id="4e625713" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>trends <span class="op">=</span> analyze_topic_trends(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -287,16 +262,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ) -&gt; matplotlib.figure.Figure</code></pre>
 <p>Bar chart of papers per year. Expects the DataFrame returned by <code>analyze_topic_trends</code>.</p>
 <p><strong>Example</strong></p>
-<div id="c7902e7e" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_topic_counts_by_year(trends, topic_name<span class="op">=</span><span class="st">"RAG"</span>, save_path<span class="op">=</span><span class="st">"rag.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> plot_topic_counts_by_year(trends, topic_name=<span class="ansi-yellow-fg">"RAG"</span>, save_path=<span class="ansi-yellow-fg">"rag.png"</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'plot_topic_counts_by_year' is not defined</pre>
+<div id="1ce512be" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>plot_topic_counts_by_year(trends, topic_name<span class="op">=</span><span class="st">"RAG"</span>, save_path<span class="op">=</span><span class="st">"rag.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="documentation_files/figure-html/cell-6-output-1.png" width="944" height="560" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+<figure class="figure">
+<p><img src="documentation_files/figure-html/cell-6-output-2.png" width="944" height="560" class="figure-img"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -328,25 +307,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Returns</strong></p>
 <p>A DataFrame with columns <code>paper_id</code>, <code>title</code>, <code>year</code>, <code>x</code>, <code>y</code>.</p>
 <p><strong>Example</strong></p>
-<div id="12c1b4d6" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> embed_and_plot_abstracts(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    model_name_or_path<span class="op">=</span><span class="st">"Qwen/Qwen3-Embedding-4B"</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    cache_path<span class="op">=</span><span class="st">"rag_emb.npy"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    save_path<span class="op">=</span><span class="st">"rag_umap.png"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    html_path<span class="op">=</span><span class="st">"rag_umap.html"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> coords = embed_and_plot_abstracts(
-<span class="ansi-green-fg">      2</span>     df,
-<span class="ansi-green-fg">      3</span>     model_name_or_path=<span class="ansi-yellow-fg">"Qwen/Qwen3-Embedding-4B"</span>,
-<span class="ansi-green-fg">      4</span>     cache_path=<span class="ansi-yellow-fg">"rag_emb.npy"</span>,
-
-<span class="ansi-red-fg">NameError</span>: name 'embed_and_plot_abstracts' is not defined</pre>
+<div id="6b3fd8b9" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> embed_and_plot_abstracts(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    model_name_or_path<span class="op">=</span><span class="st">"Qwen/Qwen3-Embedding-4B"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\Alyssa\Desktop\Stat_386_Real\Project\ml_data_pages\.venv\Lib\site-packages\tqdm\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Loading Qwen/Qwen3-Embedding-4B on cpu...</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/398 [00:00&lt;?, ?it/s]Loading weights:  92%|█████████▏| 365/398 [00:00&lt;00:00, 3648.88it/s]Loading weights: 100%|██████████| 398/398 [00:00&lt;00:00, 3758.26it/s]
+Batches:   0%|          | 0/2 [00:00&lt;?, ?it/s]Batches:  50%|█████     | 1/2 [08:40&lt;08:40, 520.79s/it]Batches: 100%|██████████| 2/2 [09:31&lt;00:00, 244.35s/it]Batches: 100%|██████████| 2/2 [09:31&lt;00:00, 285.82s/it]
+C:\Users\Alyssa\Desktop\Stat_386_Real\Project\ml_data_pages\.venv\Lib\site-packages\umap\umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+C:\Users\Alyssa\Desktop\Stat_386_Real\Project\ml_data_pages\.venv\Lib\site-packages\umap\umap_.py:2462: UserWarning: n_neighbors is larger than the dataset size; truncating to X.shape[0] - 1
+  warn(</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="documentation_files/figure-html/cell-7-output-4.png" width="1041" height="656" class="figure-img"></p>
+</figure>
 </div>
 </div>
 </div>
@@ -366,24 +352,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ) -&gt; pandas.DataFrame</code></pre>
 <p>Line plot of papers per year with a vertical dashed line marking a landmark paper’s date. Also prints how many papers came before vs.&nbsp;after the landmark.</p>
 <p><strong>Example</strong></p>
-<div id="3e9cc176" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plot_landmark_timeline(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    landmark_date<span class="op">=</span><span class="st">"2020-05-22"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    landmark_label<span class="op">=</span><span class="st">"Lewis et al. — RAG"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    topic_name<span class="op">=</span><span class="st">"RAG"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> plot_landmark_timeline(
-<span class="ansi-green-fg">      2</span>     df,
-<span class="ansi-green-fg">      3</span>     landmark_date=<span class="ansi-yellow-fg">"2020-05-22"</span>,
-<span class="ansi-green-fg">      4</span>     landmark_label=<span class="ansi-yellow-fg">"Lewis et al. — RAG"</span>,
+<div id="9a5a9ef8" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot_landmark_timeline(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    landmark_date<span class="op">=</span><span class="st">"2020-05-22"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    landmark_label<span class="op">=</span><span class="st">"Lewis et al. — RAG"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    topic_name<span class="op">=</span><span class="st">"RAG"</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="documentation_files/figure-html/cell-8-output-1.png" width="1040" height="559" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
 
-<span class="ansi-red-fg">NameError</span>: name 'plot_landmark_timeline' is not defined</pre>
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>2022</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2023</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>2024</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>2025</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
 </div>
 </div>
 </div>
