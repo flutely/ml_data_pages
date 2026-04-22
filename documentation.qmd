@@ -73,6 +73,7 @@ A `pandas.DataFrame` with columns: `paper_id`, `title`, `authors`, `year`,
 **Example**
 
 ```{python}
+#| output: false
 df = collect_topic_data(["chain of thought"], max_results_per_keyword=10, 
 api_key=SEMANTIC_SCHOLAR_API_KEY)
 ```
@@ -134,6 +135,7 @@ Bar chart of papers per year. Expects the DataFrame returned by
 
 ```{python}
 plot_topic_counts_by_year(trends, topic_name="RAG", save_path="rag.png")
+None
 ```
 
 ---
@@ -177,7 +179,10 @@ A DataFrame with columns `paper_id`, `title`, `year`, `x`, `y`.
 coords = embed_and_plot_abstracts(
     df,
     model_name_or_path="Qwen/Qwen3-Embedding-4B",
+    reducer="umap",
+    cache_path="transformer_embeddings.npy",
 )
+None
 ```
 
 ---
@@ -209,4 +214,5 @@ plot_landmark_timeline(
     landmark_label="Lewis et al. — RAG",
     topic_name="RAG",
 )
+None
 ```

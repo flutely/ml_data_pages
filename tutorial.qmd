@@ -110,6 +110,7 @@ plot_topic_counts_by_year(
     trends, 
     topic_name="Transformer Architecture"
 )
+None
 ```
 #### Landmark Timeline
 
@@ -121,6 +122,7 @@ plot_landmark_timeline(
     landmark_label="Vaswani et al. — Attention Is All You Need",
     topic_name="Transformer Architecture",
 )
+None
 ```
 #### Embedding Abstracts
 
@@ -136,4 +138,5 @@ embed_and_plot_abstracts(
     cache_path="transformer_embeddings.npy",
     topic_name="Transformer Architecture"
 )
+None
 ```
