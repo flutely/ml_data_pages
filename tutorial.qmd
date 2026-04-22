@@ -78,7 +78,7 @@ df = collect_topic_data(
         "transformer language model",
         "encoder decoder transformer",
     ],
-    max_results_per_keyword=200,
+    max_results_per_keyword=5,
     min_year=2016,
     max_year=2026,
     api_key=SEMANTIC_SCHOLAR_API_KEY
@@ -115,13 +115,24 @@ plot_topic_counts_by_year(trends, topic_name="Transformer Architecture")
 
 ```
 
+```python
+plot_landmark_timeline(
+    df,
+    landmark_date="2017-06-12",
+    landmark_label="Vaswani et al. — Attention Is All You Need",
+    topic_name="Transformer Architecture",
+)
+```
+
 ```{python}
 embed_and_plot_abstracts(
     df,
     model_name_or_path="Qwen/Qwen3-Embedding-4B",
     reducer="umap",
     cache_path="transformer_embeddings.npy",
-    topic_name="Transformer Architecture",
-    api_key=SEMANTIC_SCHOLAR_API_KEY
+    topic_name="Transformer Architecture"
 )
 ```
+
+Embedding the first time will download the model (~8 GB) and cache the
+vectors to `cache_path`. After that, rerunning is fast.

@@ -17,7 +17,7 @@ website:
         href: index.qmd
       - text: Documentation
         href: documentation.qmd
-      - text: Tutorial
+      - text: Getting Started
         href: tutorial.qmd
       - text: Report
         href: report.qmd
