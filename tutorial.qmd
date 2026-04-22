@@ -105,6 +105,7 @@ print(trends)
 #### Year counts
 
 ```{python}
+#| results: hide
 plot_topic_counts_by_year(
     trends, 
     topic_name="Transformer Architecture"
@@ -112,7 +113,8 @@ plot_topic_counts_by_year(
 ```
 #### Landmark Timeline
 
-```python
+```{python}
+#| results: hide
 plot_landmark_timeline(
     df,
     landmark_date="2017-06-12",
@@ -126,6 +128,7 @@ Note: Embedding the first time will download the model (~8 GB) and cache the
 vectors to `cache_path`. After that, rerunning is fast.
 
 ```{python}
+#| results: hide
 embed_and_plot_abstracts(
     df,
     model_name_or_path="Qwen/Qwen3-Embedding-4B",
