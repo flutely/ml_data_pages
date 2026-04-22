@@ -18,7 +18,7 @@ website:
       - text: Getting Started
         href: tutorial.qmd
       - text: Documentation
-        href: documentation.qmd
+        href: z_documentation.qmd
       - text: Report
         href: report.qmd
       - text: Streamlit App

@@ -1,112 +1,49 @@
 [
   {
-    "objectID": "tutorial.html",
-    "href": "tutorial.html",
-    "title": "Getting Started",
-    "section": "",
-    "text": "The purpose of the ml_research_trends python package is to gather data, clean, and analyze machine learning topics and how they have changed over time. Research papers are taken from SemanticScholar using their API."
-  },
-  {
-    "objectID": "tutorial.html#requirements",
-    "href": "tutorial.html#requirements",
-    "title": "Getting Started",
-    "section": "Requirements",
-    "text": "Requirements\nTo use the ml_research_trends package you must have each of the following:\n\nPython &gt;= 3.11\nSemantic Scholar API key (stored in a .env file)\npython-dotenv package for loading environment variables"
-  },
-  {
-    "objectID": "tutorial.html#installation",
-    "href": "tutorial.html#installation",
-    "title": "Getting Started",
-    "section": "Installation",
-    "text": "Installation\npip install ml-research-trends\nOr with uv:\nuv add ml-research-trends"
-  },
-  {
-    "objectID": "tutorial.html#importing",
-    "href": "tutorial.html#importing",
-    "title": "Getting Started",
-    "section": "Importing",
-    "text": "Importing\nTo import the entire package:\n\nimport ml_research_trends\n\nTo import individual functions:\n\nfrom ml_research_trends import (\n    collect_topic_data,\n    summarize_topic_data,\n    analyze_topic_trends,\n    plot_topic_counts_by_year,\n    embed_and_plot_abstracts,\n    plot_landmark_timeline\n)"
-  },
-  {
-    "objectID": "tutorial.html#setting-up-api-key",
-    "href": "tutorial.html#setting-up-api-key",
-    "title": "Getting Started",
-    "section": "Setting up API Key",
-    "text": "Setting up API Key\nTo load your API key from a .env file, use the python-dotenv package:\n\nfrom dotenv import load_dotenv\nimport os\n\n# Load environment variables from .env file\nload_dotenv()\n\n# Get the API key\nSEMANTIC_SCHOLAR_API_KEY = os.getenv('SEMANTIC_SCHOLAR_API_KEY')\n\nMake sure your .env file contains:\nSEMANTIC_SCHOLAR_API_KEY=your_api_key_here"
-  },
-  {
-    "objectID": "tutorial.html#using-the-ml_research_trends-package",
-    "href": "tutorial.html#using-the-ml_research_trends-package",
-    "title": "Getting Started",
-    "section": "Using the ml_research_trends package",
-    "text": "Using the ml_research_trends package\n\nStep 1: Gather Data\nFirst you need to create your dataset using the SemanticScholar API. You can do this using the collect_topic_data function.\nThis queries Semantic Scholar for each keyword, de-duplicates the results, filters by year, and returns a tidy pandas.DataFrame. It also writes the DataFrame to CSV if save_path is given.\n\ndf = collect_topic_data(\n    keywords=[\n        \"self-attention neural network\",\n        \"multi-head attention\",\n        \"transformer language model\",\n        \"encoder decoder transformer\",\n    ],\n    max_results_per_keyword=5,\n    min_year=2016,\n    max_year=2026,\n    api_key=SEMANTIC_SCHOLAR_API_KEY\n)\n\nprint(df[[\"title\", \"year\", \"citation_count\", \"venue\"]].head())\nprint(\"Total papers:\", len(df))\n\nFetching papers:   0%|          | 0/4 [00:00&lt;?, ?req/s]Fetching papers:   0%|          | 0/4 [00:00&lt;?, ?req/s, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:01&lt;00:03,  1.03s/req, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:01&lt;00:03,  1.03s/req, collected=0, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:01&lt;00:03,  1.03s/req, keyword=multi-head attention]                                                                                                                   Fetching papers:  25%|██▌       | 1/4 [00:01&lt;00:03,  1.03s/req, keyword=multi-head attention]\n\n\nRate limited (429). Waiting 1s before retry...\n\n\nFetching papers:  50%|█████     | 2/4 [00:03&lt;00:03,  1.61s/req, keyword=multi-head attention]Fetching papers:  50%|█████     | 2/4 [00:03&lt;00:03,  1.61s/req, collected=5, keyword=multi-head attention]Fetching papers:  50%|█████     | 2/4 [00:03&lt;00:03,  1.61s/req, keyword=transformer language model]       Fetching papers:  75%|███████▌  | 3/4 [00:04&lt;00:01,  1.41s/req, keyword=transformer language model]Fetching papers:  75%|███████▌  | 3/4 [00:04&lt;00:01,  1.41s/req, collected=10, keyword=transformer language model]Fetching papers:  75%|███████▌  | 3/4 [00:04&lt;00:01,  1.41s/req, keyword=encoder decoder transformer]             Fetching papers: 100%|██████████| 4/4 [00:05&lt;00:00,  1.28s/req, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 4/4 [00:05&lt;00:00,  1.28s/req, collected=15, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 4/4 [00:05&lt;00:00,  1.32s/req, collected=15, keyword=encoder decoder transformer]\n\n\n                                               title  year  citation_count  \\\n0  Self-attention neural network for solving corr...  2025              17   \n1  Three-dimensional DenseNet self-attention neur...  2022              81   \n2  Solving the fractional quantum Hall problem wi...  2024              27   \n3  Crystallographic phase identifier of a convolu...  2024               8   \n4  A new deep self-attention neural network for G...  2023              19   \n\n               venue  \n0  Physical review B  \n1                NaN  \n2  Physical review B  \n3              IUCrJ  \n4      GPS Solutions  \nTotal papers: 20\n\n\n\n\n\n\n\nStep 2: Summarize and analyze\n\nsummary = summarize_topic_data(df)\nprint(\"Total papers:\", summary[\"total_papers\"])\nprint(\"Year range:\", summary[\"year_min\"], \"-\", summary[\"year_max\"])\nprint(\"Median citations:\", summary[\"median_citations\"])\n\ntrends = analyze_topic_trends(df)\nprint(trends)\n\nTotal papers: 20\nYear range: 2019 - 2025\nMedian citations: 23.5\n   year  paper_count  average_citations  median_citations\n0  2019            2         927.000000             927.0\n1  2021            1          70.000000              70.0\n2  2022            2          52.000000              52.0\n3  2023            3          21.666667              19.0\n4  2024            6          21.000000              21.0\n5  2025            6          14.666667              14.5\n\n\n\n\nStep 3: Make plots\n\nYear counts\n\nplot_topic_counts_by_year(\n    trends, \n    topic_name=\"Transformer Architecture\"\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLandmark Timeline\n\nplot_landmark_timeline(\n    df,\n    landmark_date=\"2017-06-12\",\n    landmark_label=\"Vaswani et al. — Attention Is All You Need\",\n    topic_name=\"Transformer Architecture\",\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nyear\nvalue\n\n\n\n\n0\n2019\n2\n\n\n1\n2020\n0\n\n\n2\n2021\n1\n\n\n3\n2022\n2\n\n\n4\n2023\n3\n\n\n5\n2024\n6\n\n\n6\n2025\n6\n\n\n\n\n\n\n\n\n\nEmbedding Abstracts\nNote: Embedding the first time will download the model (~8 GB) and cache the vectors to cache_path. After that, rerunning is fast.\n\nembed_and_plot_abstracts(\n    df,\n    model_name_or_path=\"Qwen/Qwen3-Embedding-4B\",\n    reducer=\"umap\",\n    cache_path=\"transformer_embeddings.npy\",\n    topic_name=\"Transformer Architecture\"\n)\n\nLoaded cached embeddings from transformer_embeddings.npy\n\n\nC:\\Users\\Alyssa\\Desktop\\Stat_386_Real\\Project\\ml_data_pages\\.venv\\Lib\\site-packages\\tqdm\\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html\n  from .autonotebook import tqdm as notebook_tqdm\nC:\\Users\\Alyssa\\Desktop\\Stat_386_Real\\Project\\ml_data_pages\\.venv\\Lib\\site-packages\\umap\\umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.\n  warn(\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npaper_id\ntitle\nyear\nx\ny\n\n\n\n\n0\nf1c4104e319d43d09edb7efa072188649033ff7e\nThree-dimensional DenseNet self-attention neur...\n2022\n1.137287\n3.607828\n\n\n1\nc9bf25b0e06610439a39dc1fde2278c0c54522f3\nSolving the fractional quantum Hall problem wi...\n2024\n0.591376\n3.441537\n\n\n2\ncf0ea9501a8bb51a2a788c48d18c4aea1b14c00b\nCrystallographic phase identifier of a convolu...\n2024\n0.277100\n3.927230\n\n\n3\n24b02fbed2645dace0838dc37081bd7edee63f71\nMultiscaled Multi-Head Attention-Based Video T...\n2025\n1.732394\n4.035721\n\n\n4\n34cd0f7f447df4beecb4f74f325c68a9f823458c\nPredicting driving comfort in autonomous vehic...\n2025\n2.812892\n5.195119\n\n\n5\n3fa19d359020a1cb34123a953f90ec72b723ae33\nGMAR: Gradient-Driven Multi-Head Attention Rol...\n2025\n2.613803\n4.549635\n\n\n6\nad113e1fbad65c2c38f71c76460280302375f8c4\nMoH: Multi-Head Attention as Mixture-of-Head A...\n2024\n1.986701\n5.184796\n\n\n7\nf6440a16ccc5c13d2a86af91b76e078685abfd16\nLongHeads: Multi-Head Attention is Secretly a ...\n2024\n1.132814\n4.534517\n\n\n8\n75acc731bdd2b626edc74672a30da3bc51010ae8\nCTRL: A Conditional Transformer Language Model...\n2019\n0.062132\n4.934062\n\n\n9\na039ea239e37f53a2cb60c68e0a1967994353166\nAnalyzing the Structure of Attention in a Tran...\n2019\n1.800374\n4.644321\n\n\n10\n4cfec8ec51a0ecd7efbc6e6622ae8f930935f714\nBioformer: an efficient transformer language m...\n2023\n0.468750\n5.611642\n\n\n11\n8c71e90e6cf6a8101e59446faf6f5fbfef4cbdef\nBERTić - The Transformer Language Model for Bo...\n2021\n0.559316\n4.695991\n\n\n12\n8fba908cc5a14451c27535b6c16194be74eb084c\nCross Encoder-Decoder Transformer with Global-...\n2022\n1.346927\n5.787338\n\n\n13\ne4f9042fbb879c20986bc3a9d595b3968c8227cd\nPre-Trained Encoder Decoder Transformer Model ...\n2025\n2.473906\n5.700538\n\n\n14\n81b7d8a9311c1f2d20fd1bc1d0d9835ce19d4b24\nDEED: Dynamic Early Exit on Decoder for Accele...\n2023\n1.434910\n5.161890\n\n\n15\nef9d3494c0a73c99020d96c3a10e72106d2683eb\nEfficient Encoder-Decoder Transformer Decoding...\n2024\n0.878365\n5.192169\n\n\n16\n07714b1b381bc7ddb3c1b6f7d3e68ab4f4707ea5\nExploring Encoder–Decoder Transformer Structur...\n2025\n2.110551\n3.522035"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Home",
-    "section": "",
-    "text": "A project that looks at how a few different areas of machine learning research have grown over time. We pulled papers from the Semantic Scholar API, embedded their abstracts with Qwen3-Embedding-4B, and made a small Python package + Streamlit app to explore the results.\n\n\n\nTutorial — how to install the package and use it end-to-end\nDocumentation — reference for each function in the package\nTechnical Report — motivating question, methodology, and findings\nStreamlit App — interactive dashboard\nGitHub Repository — source code and data\n\n\n\n\n\nTransformer Architecture\nRetrieval-Augmented Generation (RAG)\nReasoning / Chain-of-Thought\nMultimodal / Vision-Language Models"
-  },
-  {
-    "objectID": "index.html#links",
-    "href": "index.html#links",
-    "title": "Home",
-    "section": "",
-    "text": "Tutorial — how to install the package and use it end-to-end\nDocumentation — reference for each function in the package\nTechnical Report — motivating question, methodology, and findings\nStreamlit App — interactive dashboard\nGitHub Repository — source code and data"
-  },
-  {
-    "objectID": "index.html#topics-included",
-    "href": "index.html#topics-included",
-    "title": "Home",
-    "section": "",
-    "text": "Transformer Architecture\nRetrieval-Augmented Generation (RAG)\nReasoning / Chain-of-Thought\nMultimodal / Vision-Language Models"
-  },
-  {
-    "objectID": "documentation.html",
-    "href": "documentation.html",
+    "objectID": "z_documentation.html",
+    "href": "z_documentation.html",
     "title": "Documentation",
     "section": "",
     "text": "Reference for every function exposed by the ml_research_trends package."
   },
   {
-    "objectID": "documentation.html#collect_topic_data",
-    "href": "documentation.html#collect_topic_data",
+    "objectID": "z_documentation.html#collect_topic_data",
+    "href": "z_documentation.html#collect_topic_data",
     "title": "Documentation",
     "section": "collect_topic_data",
     "text": "collect_topic_data\ncollect_topic_data(\n    keywords,\n    max_results_per_keyword=100,\n    min_year=None,\n    max_year=None,\n    save_path=None,\n    api_key=None,\n    request_delay=1.1,\n    max_retries=5,\n    fields=None,\n) -&gt; pandas.DataFrame\nQuery the Semantic Scholar Graph API for each keyword, de-duplicate the results, filter them by year, and return one combined DataFrame.\nArguments\n\nkeywords (list[str]): search strings to send to the API.\nmax_results_per_keyword (int): cap on papers collected per keyword.\nmin_year, max_year (int or None): inclusive year filter.\nsave_path (str or None): if given, the DataFrame is written to this CSV.\napi_key (str or None): Semantic Scholar API key. If not given, it’s read from the API_KEY environment variable (a .env file is supported).\nrequest_delay (float): seconds to wait between requests (rate limit).\nmax_retries (int): number of retries on HTTP 429.\nfields (str or None): comma-separated list of API fields to request.\n\nReturns\nA pandas.DataFrame with columns: paper_id, title, authors, year, citation_count, abstract, url, venue, keyword.\nExample\n\nimport ml_research_trends\n\ndf = collect_topic_data([\"chain of thought\"], max_results_per_keyword=10)\n\n\n---------------------------------------------------------------------------\nNameError                                 Traceback (most recent call last)\nCell In[1], line 3\n      1 import ml_research_trends\n      2 \n----&gt; 3 df = collect_topic_data([\"chain of thought\"], max_results_per_keyword=10)\n\nNameError: name 'collect_topic_data' is not defined"
   },
   {
-    "objectID": "documentation.html#summarize_topic_data",
-    "href": "documentation.html#summarize_topic_data",
+    "objectID": "z_documentation.html#summarize_topic_data",
+    "href": "z_documentation.html#summarize_topic_data",
     "title": "Documentation",
     "section": "summarize_topic_data",
     "text": "summarize_topic_data\nsummarize_topic_data(df) -&gt; dict\nReturn a dictionary of quick stats about a topic DataFrame: total_papers, year_min, year_max, average_citations, median_citations, missing_abstracts, and top_venues.\nExample\n\nsummary = summarize_topic_data(df)\nprint(summary[\"total_papers\"], summary[\"year_min\"], summary[\"year_max\"])\n\n\n---------------------------------------------------------------------------\nNameError                                 Traceback (most recent call last)\nCell In[2], line 1\n----&gt; 1 summary = summarize_topic_data(df)\n      2 print(summary[\"total_papers\"], summary[\"year_min\"], summary[\"year_max\"])\n\nNameError: name 'summarize_topic_data' is not defined"
   },
   {
-    "objectID": "documentation.html#analyze_topic_trends",
-    "href": "documentation.html#analyze_topic_trends",
+    "objectID": "z_documentation.html#analyze_topic_trends",
+    "href": "z_documentation.html#analyze_topic_trends",
     "title": "Documentation",
     "section": "analyze_topic_trends",
     "text": "analyze_topic_trends\nanalyze_topic_trends(df) -&gt; pandas.DataFrame\nGroup papers by year and compute paper_count, average_citations, and median_citations. Useful input for plot_topic_counts_by_year.\nExample\n\ntrends = analyze_topic_trends(df)\n\n\n---------------------------------------------------------------------------\nNameError                                 Traceback (most recent call last)\nCell In[3], line 1\n----&gt; 1 trends = analyze_topic_trends(df)\n\nNameError: name 'analyze_topic_trends' is not defined"
   },
   {
-    "objectID": "documentation.html#plot_topic_counts_by_year",
-    "href": "documentation.html#plot_topic_counts_by_year",
+    "objectID": "z_documentation.html#plot_topic_counts_by_year",
+    "href": "z_documentation.html#plot_topic_counts_by_year",
     "title": "Documentation",
     "section": "plot_topic_counts_by_year",
     "text": "plot_topic_counts_by_year\nplot_topic_counts_by_year(\n    trend_df,\n    topic_name=\"Topic\",\n    figsize=(10, 6),\n    show=True,\n    save_path=None,\n) -&gt; matplotlib.figure.Figure\nBar chart of papers per year. Expects the DataFrame returned by analyze_topic_trends.\nExample\n\nplot_topic_counts_by_year(trends, topic_name=\"RAG\", save_path=\"rag.png\")\n\n\n---------------------------------------------------------------------------\nNameError                                 Traceback (most recent call last)\nCell In[4], line 1\n----&gt; 1 plot_topic_counts_by_year(trends, topic_name=\"RAG\", save_path=\"rag.png\")\n\nNameError: name 'plot_topic_counts_by_year' is not defined"
   },
   {
-    "objectID": "documentation.html#embed_and_plot_abstracts",
-    "href": "documentation.html#embed_and_plot_abstracts",
+    "objectID": "z_documentation.html#embed_and_plot_abstracts",
+    "href": "z_documentation.html#embed_and_plot_abstracts",
     "title": "Documentation",
     "section": "embed_and_plot_abstracts",
     "text": "embed_and_plot_abstracts\nembed_and_plot_abstracts(\n    df,\n    model_name_or_path=\"google/embeddinggemma-300m\",\n    device=None,\n    reducer=\"umap\",          # or \"tsne\" / \"pca\"\n    batch_size=8,\n    max_papers=None,\n    cache_path=None,\n    topic_name=\"Topic\",\n    random_state=42,\n    normalize_embeddings=True,\n    trust_remote_code=False,\n    umap_kwargs=None,\n    tsne_kwargs=None,\n    pca_kwargs=None,\n    figsize=(11, 7),\n    show=True,\n    save_path=None,\n    html_path=None,\n) -&gt; pandas.DataFrame\nEmbed each paper’s abstract with a Sentence-Transformers model, reduce to 2-D (UMAP / t-SNE / PCA), and produce a scatter plot colored by year. Embeddings are cached to cache_path so subsequent runs don’t re-encode.\nReturns\nA DataFrame with columns paper_id, title, year, x, y.\nExample\n\ncoords = embed_and_plot_abstracts(\n    df,\n    model_name_or_path=\"Qwen/Qwen3-Embedding-4B\",\n    cache_path=\"rag_emb.npy\",\n    save_path=\"rag_umap.png\",\n    html_path=\"rag_umap.html\",\n)\n\n\n---------------------------------------------------------------------------\nNameError                                 Traceback (most recent call last)\nCell In[5], line 1\n----&gt; 1 coords = embed_and_plot_abstracts(\n      2     df,\n      3     model_name_or_path=\"Qwen/Qwen3-Embedding-4B\",\n      4     cache_path=\"rag_emb.npy\",\n\nNameError: name 'embed_and_plot_abstracts' is not defined"
   },
   {
-    "objectID": "documentation.html#plot_landmark_timeline",
-    "href": "documentation.html#plot_landmark_timeline",
+    "objectID": "z_documentation.html#plot_landmark_timeline",
+    "href": "z_documentation.html#plot_landmark_timeline",
     "title": "Documentation",
     "section": "plot_landmark_timeline",
     "text": "plot_landmark_timeline\nplot_landmark_timeline(\n    df,\n    landmark_date,\n    landmark_label=\"Landmark paper\",\n    cumulative=False,\n    topic_name=\"Topic\",\n    figsize=(11, 6),\n    show=True,\n    save_path=None,\n) -&gt; pandas.DataFrame\nLine plot of papers per year with a vertical dashed line marking a landmark paper’s date. Also prints how many papers came before vs. after the landmark.\nExample\n\nplot_landmark_timeline(\n    df,\n    landmark_date=\"2020-05-22\",\n    landmark_label=\"Lewis et al. — RAG\",\n    topic_name=\"RAG\",\n)\n\n\n---------------------------------------------------------------------------\nNameError                                 Traceback (most recent call last)\nCell In[6], line 1\n----&gt; 1 plot_landmark_timeline(\n      2     df,\n      3     landmark_date=\"2020-05-22\",\n      4     landmark_label=\"Lewis et al. — RAG\",\n\nNameError: name 'plot_landmark_timeline' is not defined"
@@ -166,5 +103,68 @@
     "title": "Report",
     "section": "",
     "text": "Add more topics (diffusion models, RLHF, interpretability, etc.).\nCluster the UMAP space and auto-label the clusters with top keywords.\nCompare growth curves across topics on one shared plot."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Home",
+    "section": "",
+    "text": "A project that looks at how a few different areas of machine learning research have grown over time. We pulled papers from the Semantic Scholar API, embedded their abstracts with Qwen3-Embedding-4B, and made a small Python package + Streamlit app to explore the results.\n\n\n\nTutorial — how to install the package and use it end-to-end\nDocumentation — reference for each function in the package\nTechnical Report — motivating question, methodology, and findings\nStreamlit App — interactive dashboard\nGitHub Repository — source code and data\n\n\n\n\n\nTransformer Architecture\nRetrieval-Augmented Generation (RAG)\nReasoning / Chain-of-Thought\nMultimodal / Vision-Language Models"
+  },
+  {
+    "objectID": "index.html#links",
+    "href": "index.html#links",
+    "title": "Home",
+    "section": "",
+    "text": "Tutorial — how to install the package and use it end-to-end\nDocumentation — reference for each function in the package\nTechnical Report — motivating question, methodology, and findings\nStreamlit App — interactive dashboard\nGitHub Repository — source code and data"
+  },
+  {
+    "objectID": "index.html#topics-included",
+    "href": "index.html#topics-included",
+    "title": "Home",
+    "section": "",
+    "text": "Transformer Architecture\nRetrieval-Augmented Generation (RAG)\nReasoning / Chain-of-Thought\nMultimodal / Vision-Language Models"
+  },
+  {
+    "objectID": "tutorial.html",
+    "href": "tutorial.html",
+    "title": "Getting Started",
+    "section": "",
+    "text": "The purpose of the ml_research_trends python package is to gather data, clean, and analyze machine learning topics and how they have changed over time. Research papers are taken from SemanticScholar using their API."
+  },
+  {
+    "objectID": "tutorial.html#requirements",
+    "href": "tutorial.html#requirements",
+    "title": "Getting Started",
+    "section": "Requirements",
+    "text": "Requirements\nTo use the ml_research_trends package you must have each of the following:\n\nPython &gt;= 3.11\nSemantic Scholar API key (stored in a .env file)\npython-dotenv package for loading environment variables"
+  },
+  {
+    "objectID": "tutorial.html#installation",
+    "href": "tutorial.html#installation",
+    "title": "Getting Started",
+    "section": "Installation",
+    "text": "Installation\npip install ml-research-trends\nOr with uv:\nuv add ml-research-trends"
+  },
+  {
+    "objectID": "tutorial.html#importing",
+    "href": "tutorial.html#importing",
+    "title": "Getting Started",
+    "section": "Importing",
+    "text": "Importing\nTo import the entire package:\n\nimport ml_research_trends\n\nTo import individual functions:\n\nfrom ml_research_trends import (\n    collect_topic_data,\n    summarize_topic_data,\n    analyze_topic_trends,\n    plot_topic_counts_by_year,\n    embed_and_plot_abstracts,\n    plot_landmark_timeline\n)"
+  },
+  {
+    "objectID": "tutorial.html#setting-up-api-key",
+    "href": "tutorial.html#setting-up-api-key",
+    "title": "Getting Started",
+    "section": "Setting up API Key",
+    "text": "Setting up API Key\nTo load your API key from a .env file, use the python-dotenv package:\n\nfrom dotenv import load_dotenv\nimport os\n\n# Load environment variables from .env file\nload_dotenv()\n\n# Get the API key\nSEMANTIC_SCHOLAR_API_KEY = os.getenv('SEMANTIC_SCHOLAR_API_KEY')\n\nMake sure your .env file contains:\nSEMANTIC_SCHOLAR_API_KEY=your_api_key_here"
+  },
+  {
+    "objectID": "tutorial.html#using-the-ml_research_trends-package",
+    "href": "tutorial.html#using-the-ml_research_trends-package",
+    "title": "Getting Started",
+    "section": "Using the ml_research_trends package",
+    "text": "Using the ml_research_trends package\n\nStep 1: Gather Data\nFirst you need to create your dataset using the SemanticScholar API. You can do this using the collect_topic_data function.\nThis queries Semantic Scholar for each keyword, de-duplicates the results, filters by year, and returns a tidy pandas.DataFrame. It also writes the DataFrame to CSV if save_path is given.\n\ndf = collect_topic_data(\n    keywords=[\n        \"self-attention neural network\",\n        \"multi-head attention\",\n        \"transformer language model\",\n        \"encoder decoder transformer\",\n    ],\n    max_results_per_keyword=5,\n    min_year=2016,\n    max_year=2026,\n    api_key=SEMANTIC_SCHOLAR_API_KEY\n)\n\nprint(df[[\"title\", \"year\", \"citation_count\", \"venue\"]].head())\nprint(\"Total papers:\", len(df))\n\nFetching papers:   0%|          | 0/4 [00:00&lt;?, ?req/s]Fetching papers:   0%|          | 0/4 [00:00&lt;?, ?req/s, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:00&lt;00:02,  1.22req/s, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:00&lt;00:02,  1.22req/s, collected=0, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:00&lt;00:02,  1.22req/s, keyword=multi-head attention]                      Fetching papers:  50%|█████     | 2/4 [00:02&lt;00:02,  1.08s/req, keyword=multi-head attention]Fetching papers:  50%|█████     | 2/4 [00:02&lt;00:02,  1.08s/req, collected=5, keyword=multi-head attention]Fetching papers:  50%|█████     | 2/4 [00:02&lt;00:02,  1.08s/req, keyword=transformer language model]       Fetching papers:  75%|███████▌  | 3/4 [00:03&lt;00:01,  1.11s/req, keyword=transformer language model]Fetching papers:  75%|███████▌  | 3/4 [00:03&lt;00:01,  1.11s/req, collected=10, keyword=transformer language model]Fetching papers:  75%|███████▌  | 3/4 [00:03&lt;00:01,  1.11s/req, keyword=encoder decoder transformer]             Fetching papers: 100%|██████████| 4/4 [00:04&lt;00:00,  1.01req/s, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 4/4 [00:04&lt;00:00,  1.01req/s, collected=15, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 4/4 [00:04&lt;00:00,  1.01s/req, collected=15, keyword=encoder decoder transformer]\n\n\n                                               title  year  citation_count  \\\n0  Self-attention neural network for solving corr...  2025              17   \n1  Three-dimensional DenseNet self-attention neur...  2022              81   \n2  Solving the fractional quantum Hall problem wi...  2024              27   \n3  Crystallographic phase identifier of a convolu...  2024               8   \n4  A new deep self-attention neural network for G...  2023              19   \n\n               venue  \n0  Physical review B  \n1                NaN  \n2  Physical review B  \n3              IUCrJ  \n4      GPS Solutions  \nTotal papers: 20\n\n\n\n\n\n\n\nStep 2: Summarize and analyze\n\nsummary = summarize_topic_data(df)\nprint(\"Total papers:\", summary[\"total_papers\"])\nprint(\"Year range:\", summary[\"year_min\"], \"-\", summary[\"year_max\"])\nprint(\"Median citations:\", summary[\"median_citations\"])\n\ntrends = analyze_topic_trends(df)\nprint(trends)\n\nTotal papers: 20\nYear range: 2019 - 2025\nMedian citations: 23.5\n   year  paper_count  average_citations  median_citations\n0  2019            2         927.000000             927.0\n1  2021            1          70.000000              70.0\n2  2022            2          52.000000              52.0\n3  2023            3          21.666667              19.0\n4  2024            6          21.000000              21.0\n5  2025            6          14.666667              14.5\n\n\n\n\nStep 3: Make plots\n\nYear counts\n\nplot_topic_counts_by_year(\n    trends, \n    topic_name=\"Transformer Architecture\"\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLandmark Timeline\n\nplot_landmark_timeline(\n    df,\n    landmark_date=\"2017-06-12\",\n    landmark_label=\"Vaswani et al. — Attention Is All You Need\",\n    topic_name=\"Transformer Architecture\",\n)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nyear\nvalue\n\n\n\n\n0\n2019\n2\n\n\n1\n2020\n0\n\n\n2\n2021\n1\n\n\n3\n2022\n2\n\n\n4\n2023\n3\n\n\n5\n2024\n6\n\n\n6\n2025\n6\n\n\n\n\n\n\n\n\n\nEmbedding Abstracts\nNote: Embedding the first time will download the model (~8 GB) and cache the vectors to cache_path. After that, rerunning is fast.\n\nembed_and_plot_abstracts(\n    df,\n    model_name_or_path=\"Qwen/Qwen3-Embedding-4B\",\n    reducer=\"umap\",\n    cache_path=\"transformer_embeddings.npy\",\n    topic_name=\"Transformer Architecture\"\n)\n\nLoaded cached embeddings from transformer_embeddings.npy\n\n\nC:\\Users\\Alyssa\\Desktop\\Stat_386_Real\\Project\\ml_data_pages\\.venv\\Lib\\site-packages\\tqdm\\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html\n  from .autonotebook import tqdm as notebook_tqdm\nC:\\Users\\Alyssa\\Desktop\\Stat_386_Real\\Project\\ml_data_pages\\.venv\\Lib\\site-packages\\umap\\umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.\n  warn(\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npaper_id\ntitle\nyear\nx\ny\n\n\n\n\n0\nf1c4104e319d43d09edb7efa072188649033ff7e\nThree-dimensional DenseNet self-attention neur...\n2022\n1.137287\n3.607828\n\n\n1\nc9bf25b0e06610439a39dc1fde2278c0c54522f3\nSolving the fractional quantum Hall problem wi...\n2024\n0.591376\n3.441537\n\n\n2\ncf0ea9501a8bb51a2a788c48d18c4aea1b14c00b\nCrystallographic phase identifier of a convolu...\n2024\n0.277100\n3.927230\n\n\n3\n24b02fbed2645dace0838dc37081bd7edee63f71\nMultiscaled Multi-Head Attention-Based Video T...\n2025\n1.732394\n4.035721\n\n\n4\n34cd0f7f447df4beecb4f74f325c68a9f823458c\nPredicting driving comfort in autonomous vehic...\n2025\n2.812892\n5.195119\n\n\n5\n3fa19d359020a1cb34123a953f90ec72b723ae33\nGMAR: Gradient-Driven Multi-Head Attention Rol...\n2025\n2.613803\n4.549635\n\n\n6\nad113e1fbad65c2c38f71c76460280302375f8c4\nMoH: Multi-Head Attention as Mixture-of-Head A...\n2024\n1.986701\n5.184796\n\n\n7\nf6440a16ccc5c13d2a86af91b76e078685abfd16\nLongHeads: Multi-Head Attention is Secretly a ...\n2024\n1.132814\n4.534517\n\n\n8\n75acc731bdd2b626edc74672a30da3bc51010ae8\nCTRL: A Conditional Transformer Language Model...\n2019\n0.062132\n4.934062\n\n\n9\na039ea239e37f53a2cb60c68e0a1967994353166\nAnalyzing the Structure of Attention in a Tran...\n2019\n1.800374\n4.644321\n\n\n10\n4cfec8ec51a0ecd7efbc6e6622ae8f930935f714\nBioformer: an efficient transformer language m...\n2023\n0.468750\n5.611642\n\n\n11\n8c71e90e6cf6a8101e59446faf6f5fbfef4cbdef\nBERTić - The Transformer Language Model for Bo...\n2021\n0.559316\n4.695991\n\n\n12\n8fba908cc5a14451c27535b6c16194be74eb084c\nCross Encoder-Decoder Transformer with Global-...\n2022\n1.346927\n5.787338\n\n\n13\ne4f9042fbb879c20986bc3a9d595b3968c8227cd\nPre-Trained Encoder Decoder Transformer Model ...\n2025\n2.473906\n5.700538\n\n\n14\n81b7d8a9311c1f2d20fd1bc1d0d9835ce19d4b24\nDEED: Dynamic Early Exit on Decoder for Accele...\n2023\n1.434910\n5.161890\n\n\n15\nef9d3494c0a73c99020d96c3a10e72106d2683eb\nEfficient Encoder-Decoder Transformer Decoding...\n2024\n0.878365\n5.192169\n\n\n16\n07714b1b381bc7ddb3c1b6f7d3e68ab4f4707ea5\nExploring Encoder–Decoder Transformer Structur...\n2025\n2.110551\n3.522035"
   }
 ]
