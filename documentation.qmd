@@ -45,6 +45,8 @@ A `pandas.DataFrame` with columns: `paper_id`, `title`, `authors`, `year`,
 **Example**
 
 ```{python}
+import ml_research_trends
+
 df = collect_topic_data(["chain of thought"], max_results_per_keyword=10)
 ```
 

@@ -214,14 +214,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Returns</strong></p>
 <p>A <code>pandas.DataFrame</code> with columns: <code>paper_id</code>, <code>title</code>, <code>authors</code>, <code>year</code>, <code>citation_count</code>, <code>abstract</code>, <code>url</code>, <code>venue</code>, <code>keyword</code>.</p>
 <p><strong>Example</strong></p>
-<div id="e263d169" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> collect_topic_data([<span class="st">"chain of thought"</span>], max_results_per_keyword<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="19da8b9a" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ml_research_trends</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> collect_topic_data([<span class="st">"chain of thought"</span>], max_results_per_keyword<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> df = collect_topic_data([<span class="ansi-yellow-fg">"chain of thought"</span>], max_results_per_keyword=<span class="ansi-green-fg">10</span>)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[1]</span><span class="ansi-green-fg">, line 3</span>
+<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> ml_research_trends
+<span class="ansi-green-fg">      2</span> 
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> df = collect_topic_data([<span class="ansi-yellow-fg">"chain of thought"</span>], max_results_per_keyword=<span class="ansi-green-fg">10</span>)
 
 <span class="ansi-red-fg">NameError</span>: name 'collect_topic_data' is not defined</pre>
 </div>
@@ -234,7 +238,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>summarize_topic_data(df) -&gt; dict</code></pre>
 <p>Return a dictionary of quick stats about a topic DataFrame: <code>total_papers</code>, <code>year_min</code>, <code>year_max</code>, <code>average_citations</code>, <code>median_citations</code>, <code>missing_abstracts</code>, and <code>top_venues</code>.</p>
 <p><strong>Example</strong></p>
-<div id="1542efeb" class="cell" data-execution_count="2">
+<div id="3a49b132" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summarize_topic_data(df)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary[<span class="st">"total_papers"</span>], summary[<span class="st">"year_min"</span>], summary[<span class="st">"year_max"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -256,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>analyze_topic_trends(df) -&gt; pandas.DataFrame</code></pre>
 <p>Group papers by year and compute <code>paper_count</code>, <code>average_citations</code>, and <code>median_citations</code>. Useful input for <code>plot_topic_counts_by_year</code>.</p>
 <p><strong>Example</strong></p>
-<div id="118a2970" class="cell" data-execution_count="3">
+<div id="b249e7ab" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>trends <span class="op">=</span> analyze_topic_trends(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -282,7 +286,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ) -&gt; matplotlib.figure.Figure</code></pre>
 <p>Bar chart of papers per year. Expects the DataFrame returned by <code>analyze_topic_trends</code>.</p>
 <p><strong>Example</strong></p>
-<div id="6f58b7a2" class="cell" data-execution_count="4">
+<div id="49057311" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plot_topic_counts_by_year(trends, topic_name<span class="op">=</span><span class="st">"RAG"</span>, save_path<span class="op">=</span><span class="st">"rag.png"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -323,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Returns</strong></p>
 <p>A DataFrame with columns <code>paper_id</code>, <code>title</code>, <code>year</code>, <code>x</code>, <code>y</code>.</p>
 <p><strong>Example</strong></p>
-<div id="4b64eb82" class="cell" data-execution_count="5">
+<div id="53cb09bf" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> embed_and_plot_abstracts(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    model_name_or_path<span class="op">=</span><span class="st">"Qwen/Qwen3-Embedding-4B"</span>,</span>
@@ -361,7 +365,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ) -&gt; pandas.DataFrame</code></pre>
 <p>Line plot of papers per year with a vertical dashed line marking a landmark paper’s date. Also prints how many papers came before vs.&nbsp;after the landmark.</p>
 <p><strong>Example</strong></p>
-<div id="1200cfcd" class="cell" data-execution_count="6">
+<div id="95c3c1ae" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>plot_landmark_timeline(</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    landmark_date<span class="op">=</span><span class="st">"2020-05-22"</span>,</span>

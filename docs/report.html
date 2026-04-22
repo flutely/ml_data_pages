@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -149,130 +184,101 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="report" class="level1">
-<h1>Report</h1>
-<section id="motivation-behind-the-project" class="level2">
-<h2 class="anchored" data-anchor-id="motivation-behind-the-project">Motivation behind the project</h2>
-<p>Hook (1–2 sentences):</p>
-<p>AI research has exploded in the past few years—but where is it actually going?</p>
-<section id="goal" class="level3">
-<h3 class="anchored" data-anchor-id="goal">Goal:</h3>
-<p>Track how major AI/LLM topics evolved from 2019–2026</p>
+<section id="technical-report" class="level1">
+<h1>Technical Report</h1>
+<section id="motivating-question" class="level2">
+<h2 class="anchored" data-anchor-id="motivating-question">Motivating question</h2>
+<p><strong>How has the volume of ML research on a handful of high-impact sub-topics grown over time, and how much of that growth can be tied to specific landmark papers?</strong></p>
+<p>The intuition is that a single influential paper (e.g.&nbsp;<em>Attention Is All You Need</em>) can kick off a wave of follow-up work. We wanted to see whether that pattern actually shows up in the data for several well-known sub-fields, and also whether the papers in each sub-field cluster together semantically in a way that reflects the topic’s sub-structure. We also wanted to see if there was a delay in how soon the research followed these landmark studies.</p>
 </section>
-<section id="key-questions" class="level3">
-<h3 class="anchored" data-anchor-id="key-questions">Key Questions:</h3>
-<p>Which AI topics grew the fastest from 2019 to 2026? Which topics had the highest publication volume each year? Which topics had the highest citation impact? How concentrated or diverse was AI research across topics over time? Did publication volume in selected topics increase after landmark papers?</p>
-</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>We collected paper metadata from the <a href="https://api.semanticscholar.org/">Semantic Scholar Graph API</a> using keyword search. Four topics were included:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Topic</th>
+<th>Keywords</th>
+<th>Landmark paper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Transformer Architecture</td>
+<td>“self-attention neural network”, “multi-head attention”, …</td>
+<td>Vaswani et al.&nbsp;(2017)</td>
+</tr>
+<tr class="even">
+<td>Retrieval-Augmented Generation</td>
+<td>“retrieval augmented generation”, “RAG”, …</td>
+<td>Lewis et al.&nbsp;(2020)</td>
+</tr>
+<tr class="odd">
+<td>Reasoning / Chain-of-Thought</td>
+<td>“chain of thought”, “step by step reasoning LLM”, …</td>
+<td>Wei et al.&nbsp;(2022)</td>
+</tr>
+<tr class="even">
+<td>Multimodal / Vision-Language</td>
+<td>“vision language model”, “CLIP”, …</td>
+<td>Radford et al.&nbsp;(2021)</td>
+</tr>
+</tbody>
+</table>
+<p>For each topic we pulled up to ~500 papers per keyword, de-duplicated by paper ID, and filtered to the year window. The cleaned CSVs live in <code>local_data/&lt;topic&gt;/</code>.</p>
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<section id="data-source" class="level3">
-<h3 class="anchored" data-anchor-id="data-source">Data Source</h3>
-<p>We searched through several different database options for aquiring data about research papers. After exploring options such as OpenAlex and arXiv, we finally settled on SemanticScholar because their API easily provided sufficient data to analyze.</p>
+<ol type="1">
+<li><strong>Collection.</strong> <code>collect_topic_data</code> calls the Semantic Scholar search endpoint for each keyword, handling pagination, rate limits, and de-duplication.</li>
+<li><strong>Cleaning.</strong> Missing abstracts and titles are stripped, <code>year</code> and <code>citation_count</code> are changed to integers, and rows without a year are dropped.</li>
+<li><strong>Trend analysis.</strong> <code>analyze_topic_trends</code> groups by year and computes <code>paper_count</code>, <code>average_citations</code>, and <code>median_citations</code>.</li>
+<li><strong>Landmark timeline.</strong> <code>plot_landmark_timeline</code> draws the yearly counts with a vertical line on the landmark paper’s date, and prints the number of papers before vs.&nbsp;after it.</li>
+<li><strong>Semantic embeddings.</strong> <code>embed_and_plot_abstracts</code> encodes each abstract with <a href="https://huggingface.co/Qwen/Qwen3-Embedding-4B">Qwen3-Embedding-4B</a> and reduces the resulting 4096-dim vectors to 2-D with UMAP (cosine metric, <code>n_neighbors=15</code>, <code>min_dist=0.1</code>). Embeddings are cached to <code>.npy</code> so the whole pipeline is re-runnable in a few seconds.</li>
+<li><strong>Dashboard.</strong> The Streamlit app (<code>app.py</code> + <code>pages/</code>) loads the cached CSVs and embeddings, re-runs UMAP on demand with user-chosen hyperparameters, and renders an interactive Plotly scatter plot.</li>
+</ol>
 </section>
-<section id="search-terms" class="level3">
-<h3 class="anchored" data-anchor-id="search-terms">Search Terms</h3>
-<p>We used the following search terms when curating our dataset.</p>
+<section id="key-takeaways" class="level2">
+<h2 class="anchored" data-anchor-id="key-takeaways">Key takeaways</h2>
 <ul>
-<li>llm</li>
-<li>CoT</li>
-<li>reasoning</li>
-<li>chain of thought</li>
-<li>rag</li>
-<li>grounding</li>
-<li>external memory</li>
-<li>multimodal</li>
-<li>image generation</li>
-<li>rlhf</li>
-<li>lora</li>
-<li>qlora</li>
-<li>quantization</li>
-<li>efficient fine-tuning</li>
-<li>long context and efficient</li>
-<li>sparse attention</li>
-<li>flash attention</li>
-<li>hallucination</li>
-<li>efficient inference</li>
+<li><strong>The landmark-paper effect is real and visible.</strong> For every topic, the per-year paper count is basically flat before the landmark paper and then grows sharply afterward. Transformer papers, for example, are dominated by post-2017 work; RAG and CoT both show near-vertical growth immediately after 2020 / 2022 respectively.</li>
+<li><strong>Growth is still accelerating.</strong> Some of the topics have their highest paper counts in the most recent full year in the dataset. Even “older” areas like the original Transformer line are still growing, not plateauing.</li>
+<li><strong>Abstract embeddings recover meaningful sub-clusters.</strong> In the UMAP projection, papers group into visibly separate sub-communities (e.g. retrieval systems vs.&nbsp;reasoning vs.&nbsp;evaluation benchmarks within the RAG topic). Color-by-year also shows a clear temporal drift across the embedding space, suggesting the language used to describe each sub-field has shifted noticeably over the last few years.</li>
+<li><strong>Citations are extremely skewed.</strong> In every topic the median citation count is small but the mean is much larger, driven by a handful of very high-citation landmark papers. This is why the Streamlit app reports the median rather than the mean.</li>
 </ul>
 </section>
-<section id="dataset" class="level3">
-<h3 class="anchored" data-anchor-id="dataset">Dataset</h3>
-<p>The resulting dataset had ___ distinct entries. Columns included the following: - title - authors - year - citations - abstract - paperId - influential_citations</p>
+<section id="reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
+<p>Anyone can reproduce every artifact in the repo by:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/dallinmj/ml_research_trends.git</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ml_research_trends</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> local_data</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> run.py           <span class="co"># edit the TOPIC / SLUG / KEYWORDS block to pick a topic</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The raw CSVs, cached embeddings, and plots are all committed under <code>local_data/&lt;topic&gt;/</code> so you don’t <em>have</em> to re-run the pipeline to explore the results — the Streamlit app and notebooks will work out of the box.</p>
 </section>
-<section id="embedding" class="level3">
-<h3 class="anchored" data-anchor-id="embedding">Embedding</h3>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<ul>
+<li>Semantic Scholar’s search endpoint is keyword-based, so topic coverage is only as good as the keyword list. A paper that uses different terminology will be missed.</li>
+<li>The 2026 counts are partial (the year isn’t over yet), so the last bar on every plot is an undercount.</li>
+<li>Citation counts are a snapshot at collection time and will drift upward.</li>
+</ul>
 </section>
-<section id="analysis" class="level3">
-<h3 class="anchored" data-anchor-id="analysis">Analysis</h3>
-</section>
-<section id="landmark-papers" class="level3">
-<h3 class="anchored" data-anchor-id="landmark-papers">Landmark Papers</h3>
-<p>(Keep to 3–4 max)</p>
-<p>GPT-3 (2020) → scaling + few-shot RAG (2020) → retrieval-based models InstructGPT (2022) → alignment Chain-of-Thought (2022) → reasoning</p>
-<p>Goal:</p>
-<p>See if these triggered growth in related topics</p>
-</section>
-</section>
-<section id="insights" class="level2">
-<h2 class="anchored" data-anchor-id="insights">Insights</h2>
-<p>(This is your main section—very scannable)</p>
-<section id="overall-growth-of-ai-research" class="level3">
-<h3 class="anchored" data-anchor-id="overall-growth-of-ai-research">Overall Growth of AI Research</h3>
-<p>Total papers increased from [X] → [Y] Growth accelerated around [year]</p>
-<p>Key takeaway:</p>
-<p>[1 sentence insight]</p>
-</section>
-<section id="fastest-growing-topics" class="level3">
-<h3 class="anchored" data-anchor-id="fastest-growing-topics">Fastest Growing Topics</h3>
-<p>#1: [Topic] → +[X%] #2: [Topic] #3: [Topic]</p>
-<p>Observation:</p>
-<p>“Growth is concentrated in…”</p>
-</section>
-<section id="most-popular-topics-by-volume" class="level3">
-<h3 class="anchored" data-anchor-id="most-popular-topics-by-volume">Most Popular Topics by Volume</h3>
-<p>2019: [Topic] 2022: [Topic] 2026: [Topic]</p>
-<p>Trend:</p>
-<p>“We see a shift from ___ → ___”</p>
-</section>
-<section id="highest-impact-topics-citations" class="level3">
-<h3 class="anchored" data-anchor-id="highest-impact-topics-citations">Highest Impact Topics (Citations)</h3>
-<p>[Topic] has highest avg citations [Topic] has high volume but lower impact</p>
-<p>Interesting insight:</p>
-<p>“Popular ≠ impactful because…”</p>
-</section>
-<section id="how-diverse-is-ai-research" class="level3">
-<h3 class="anchored" data-anchor-id="how-diverse-is-ai-research">How Diverse Is AI Research?</h3>
-<p>Early years: concentrated in [few topics] Later years: more spread out / more specialized</p>
-<p>Interpretation:</p>
-<p>“The field is becoming more [specialized/diverse]”</p>
-</section>
-<section id="did-landmark-papers-change-trends" class="level3">
-<h3 class="anchored" data-anchor-id="did-landmark-papers-change-trends">Did Landmark Papers Change Trends?</h3>
-<p>Example 1: GPT-3 (2020)</p>
-<p>Before: [trend] After: [trend] “Clear increase in LLM-related work”</p>
-<p>Example 2: Chain-of-Thought (2022)</p>
-<p>spike in reasoning papers</p>
-<p>(Only include strong effects—skip weak ones)</p>
-</section>
-</section>
-<section id="takeaways" class="level2">
-<h2 class="anchored" data-anchor-id="takeaways">Takeaways</h2>
-<section id="key-insights" class="level3">
-<h3 class="anchored" data-anchor-id="key-insights">Key Insights</h3>
-<p>AI research is shifting toward [X] Some topics grow fast but don’t dominate volume Breakthrough papers can trigger rapid follow-on work</p>
-</section>
-<section id="limitations" class="level3">
-<h3 class="anchored" data-anchor-id="limitations">Limitations</h3>
-<p>Topic classification is imperfect arXiv bias (not all papers included) Citations lag behind recent work</p>
-</section>
-<section id="conclusion" class="level3">
-<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
-<p>AI research is not just growing—it’s shifting direction Recent years show a move toward: [example: LLMs, reasoning, efficiency]</p>
-<p>Closing line (keep it punchy):</p>
-<p>“Understanding these trends helps us see not just where AI is—but where it’s going next.”</p>
+<section id="potential-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="potential-next-steps">Potential next steps</h2>
+<ul>
+<li>Add more topics (diffusion models, RLHF, interpretability, etc.).</li>
+<li>Cluster the UMAP space and auto-label the clusters with top keywords.</li>
+<li>Compare growth curves across topics on one shared plot.</li>
+</ul>
 
 
-</section>
 </section>
 </section>
 
