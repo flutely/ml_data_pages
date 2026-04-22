@@ -202,11 +202,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="importing" class="level2">
 <h2 class="anchored" data-anchor-id="importing">Importing</h2>
 <p>To import the entire package:</p>
-<div id="84376a8b" class="cell" data-execution_count="1">
+<div id="1877313b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ml_research_trends</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To import individual functions:</p>
-<div id="ee9a536b" class="cell" data-execution_count="2">
+<div id="402407ae" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ml_research_trends <span class="im">import</span> (</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    collect_topic_data,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    summarize_topic_data,</span>
@@ -220,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setting-up-api-key" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up-api-key">Setting up API Key</h2>
 <p>To load your API key from a <code>.env</code> file, use the <code>python-dotenv</code> package:</p>
-<div id="a345db09" class="cell" data-execution_count="3">
+<div id="ef46e774" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="step-1-gather-data">Step 1: Gather Data</h3>
 <p>First you need to create your dataset using the SemanticScholar API. You can do this using the <code>collect_topic_data</code> function.</p>
 <p>This queries Semantic Scholar for each keyword, de-duplicates the results, filters by year, and returns a tidy <code>pandas.DataFrame</code>. It also writes the DataFrame to CSV if <code>save_path</code> is given.</p>
-<div id="b2171f86" class="cell" data-execution_count="4">
+<div id="058a8e66" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> collect_topic_data(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    keywords<span class="op">=</span>[</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"self-attention neural network"</span>,</span>
@@ -256,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[[<span class="st">"title"</span>, <span class="st">"year"</span>, <span class="st">"citation_count"</span>, <span class="st">"venue"</span>]].head())</span>
 <span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total papers:"</span>, <span class="bu">len</span>(df))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Fetching papers:   0%|          | 0/4 [00:00&lt;?, ?req/s]Fetching papers:   0%|          | 0/4 [00:00&lt;?, ?req/s, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:00&lt;00:02,  1.27req/s, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:00&lt;00:02,  1.27req/s, collected=0, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:00&lt;00:02,  1.27req/s, keyword=multi-head attention]                      Fetching papers:  50%|█████     | 2/4 [00:01&lt;00:02,  1.00s/req, keyword=multi-head attention]Fetching papers:  50%|█████     | 2/4 [00:01&lt;00:02,  1.00s/req, collected=5, keyword=multi-head attention]Fetching papers:  50%|█████     | 2/4 [00:01&lt;00:02,  1.00s/req, keyword=transformer language model]       Fetching papers:  75%|███████▌  | 3/4 [00:03&lt;00:01,  1.11s/req, keyword=transformer language model]Fetching papers:  75%|███████▌  | 3/4 [00:03&lt;00:01,  1.11s/req, collected=10, keyword=transformer language model]Fetching papers:  75%|███████▌  | 3/4 [00:03&lt;00:01,  1.11s/req, keyword=encoder decoder transformer]             Fetching papers: 100%|██████████| 4/4 [00:04&lt;00:00,  1.03s/req, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 4/4 [00:04&lt;00:00,  1.03s/req, collected=15, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 4/4 [00:04&lt;00:00,  1.02s/req, collected=15, keyword=encoder decoder transformer]</code></pre>
+<pre><code>Fetching papers:   0%|          | 0/4 [00:00&lt;?, ?req/s]Fetching papers:   0%|          | 0/4 [00:00&lt;?, ?req/s, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:00&lt;00:02,  1.33req/s, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:00&lt;00:02,  1.33req/s, collected=0, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 1/4 [00:00&lt;00:02,  1.33req/s, keyword=multi-head attention]                      Fetching papers:  50%|█████     | 2/4 [00:01&lt;00:01,  1.09req/s, keyword=multi-head attention]Fetching papers:  50%|█████     | 2/4 [00:01&lt;00:01,  1.09req/s, collected=5, keyword=multi-head attention]Fetching papers:  50%|█████     | 2/4 [00:01&lt;00:01,  1.09req/s, keyword=transformer language model]       Fetching papers:  75%|███████▌  | 3/4 [00:03&lt;00:01,  1.09s/req, keyword=transformer language model]Fetching papers:  75%|███████▌  | 3/4 [00:03&lt;00:01,  1.09s/req, collected=10, keyword=transformer language model]Fetching papers:  75%|███████▌  | 3/4 [00:03&lt;00:01,  1.09s/req, keyword=encoder decoder transformer]             Fetching papers: 100%|██████████| 4/4 [00:04&lt;00:00,  1.09s/req, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 4/4 [00:04&lt;00:00,  1.09s/req, collected=15, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 4/4 [00:04&lt;00:00,  1.04s/req, collected=15, keyword=encoder decoder transformer]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                                               title  year  citation_count  \
@@ -281,7 +281,7 @@ Total papers: 20</code></pre>
 </section>
 <section id="step-2-summarize-and-analyze" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-summarize-and-analyze">Step 2: Summarize and analyze</h3>
-<div id="e2f9ed4e" class="cell" data-execution_count="5">
+<div id="f2e312cc" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summarize_topic_data(df)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total papers:"</span>, summary[<span class="st">"total_papers"</span>])</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Year range:"</span>, summary[<span class="st">"year_min"</span>], <span class="st">"-"</span>, summary[<span class="st">"year_max"</span>])</span>
@@ -298,8 +298,8 @@ Median citations: 23.5
 1  2021            1          70.000000              70.0
 2  2022            2          52.000000              52.0
 3  2023            3          21.666667              19.0
-4  2024            6          21.000000              21.0
-5  2025            6          14.666667              14.5</code></pre>
+4  2024            7          19.571429              18.0
+5  2025            5          17.600000              17.0</code></pre>
 </div>
 </div>
 </section>
@@ -307,7 +307,7 @@ Median citations: 23.5
 <h3 class="anchored" data-anchor-id="step-3-make-plots">Step 3: Make plots</h3>
 <section id="year-counts" class="level4">
 <h4 class="anchored" data-anchor-id="year-counts">Year counts</h4>
-<div id="75a5bb72" class="cell" data-results="hide" data-execution_count="6">
+<div id="bf8890e1" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot_topic_counts_by_year(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    trends, </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    topic_name<span class="op">=</span><span class="st">"Transformer Architecture"</span></span>
@@ -316,7 +316,7 @@ Median citations: 23.5
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial_files/figure-html/cell-7-output-1.png" width="944" height="560" class="figure-img"></p>
+<p><img src="tutorial_files/figure-html/cell-8-output-1.png" width="944" height="560" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -324,7 +324,7 @@ Median citations: 23.5
 </section>
 <section id="landmark-timeline" class="level4">
 <h4 class="anchored" data-anchor-id="landmark-timeline">Landmark Timeline</h4>
-<div id="6c1ac62a" class="cell" data-results="hide" data-execution_count="7">
+<div id="95ce99e2" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plot_landmark_timeline(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    landmark_date<span class="op">=</span><span class="st">"2017-06-12"</span>,</span>
@@ -335,7 +335,7 @@ Median citations: 23.5
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tutorial_files/figure-html/cell-8-output-1.png" width="1040" height="559" class="figure-img"></p>
+<p><img src="tutorial_files/figure-html/cell-9-output-1.png" width="1040" height="559" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -344,41 +344,15 @@ Median citations: 23.5
 <section id="embedding-abstracts" class="level4">
 <h4 class="anchored" data-anchor-id="embedding-abstracts">Embedding Abstracts</h4>
 <p>Note: Embedding the first time will download the model (~8 GB) and cache the vectors to <code>cache_path</code>. After that, rerunning is fast.</p>
-<div id="de07453e" class="cell" data-results="hide" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>embed_and_plot_abstracts(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    model_name_or_path<span class="op">=</span><span class="st">"Qwen/Qwen3-Embedding-4B"</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    reducer<span class="op">=</span><span class="st">"umap"</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    cache_path<span class="op">=</span><span class="st">"transformer_embeddings.npy"</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    topic_name<span class="op">=</span><span class="st">"Transformer Architecture"</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<div id="aacf5689" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># embed_and_plot_abstracts(</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#    df,</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">#    model_name_or_path="Qwen/Qwen3-Embedding-4B",</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co">#    reducer="umap",</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co">#    cache_path="transformer_embeddings.npy",</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#    topic_name="Transformer Architecture"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co">#)</span></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="va">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\Alyssa\Desktop\Stat_386_Real\Project\ml_data_pages\.venv\Lib\site-packages\tqdm\auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Loading Qwen/Qwen3-Embedding-4B on cpu...</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-Loading weights:   0%|          | 0/398 [00:00&lt;?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00&lt;00:00, 5205.60it/s]
-Batches:   0%|          | 0/3 [00:00&lt;?, ?it/s]Batches:  33%|███▎      | 1/3 [08:49&lt;17:39, 529.62s/it]Batches:  67%|██████▋   | 2/3 [15:09&lt;07:21, 441.65s/it]Batches: 100%|██████████| 3/3 [15:28&lt;00:00, 248.50s/it]Batches: 100%|██████████| 3/3 [15:28&lt;00:00, 309.45s/it]</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Saved embeddings to transformer_embeddings.npy</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\Alyssa\Desktop\Stat_386_Real\Project\ml_data_pages\.venv\Lib\site-packages\umap\umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
-  warn(</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="tutorial_files/figure-html/cell-9-output-6.png" width="1041" height="656" class="figure-img"></p>
-</figure>
-</div>
-</div>
 </div>
 
 

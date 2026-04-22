@@ -8,6 +8,7 @@ Reference for every function exposed by the `ml_research_trends` package.
 
 ```{bash}
 #| echo: false
+#| results: hide
 uv add ml-research-trends
 ```
 
@@ -31,6 +32,11 @@ from ml_research_trends import (
     embed_and_plot_abstracts,
     plot_landmark_timeline
 )
+import warnings
+import contextlib
+import os
+
+warnings.filterwarnings("ignore")
 
 ```
 
@@ -176,12 +182,12 @@ A DataFrame with columns `paper_id`, `title`, `year`, `x`, `y`.
 **Example**
 
 ```{python}
-coords = embed_and_plot_abstracts(
-    df,
-    model_name_or_path="Qwen/Qwen3-Embedding-4B",
-    reducer="umap",
-    cache_path="transformer_embeddings.npy",
-)
+# coords = embed_and_plot_abstracts(
+#    df,
+#    model_name_or_path="Qwen/Qwen3-Embedding-4B",
+#    reducer="umap",
+#    cache_path="transformer_embeddings.npy",
+#)
 None
 ```
 
