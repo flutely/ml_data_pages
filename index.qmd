@@ -2,17 +2,24 @@
 title: Home
 ---
 
-# ML Research Analysis
+# Machine Learning Research Trends
 
-This website documents out Stat 386 Final Projects
+A project that looks at how a few different areas of machine learning
+research have grown over time. We pulled papers from the Semantic Scholar API,
+embedded their abstracts with Qwen3-Embedding-4B, and made a small Python
+package + Streamlit app to explore the results.
 
-Information about the purpose and findings of the project can be found under the _Report_ tab.
+## Links
 
-Information about the python package and how to install can be found under the _Tutorial_ tab. 
+- [Tutorial](tutorial.qmd) — how to install the package and use it end-to-end
+- [Documentation](documentation.qmd) — reference for each function in the package
+- [Technical Report](report.qmd) — motivating question, methodology, and findings
+- [Streamlit App](https://ml-trends.streamlit.app/) — interactive dashboard
+- [GitHub Repository](https://github.com/dallinmj/ml_research_trends) — source code and data
 
-Other information about the python package and the dataset can be found under the _Documentation_ tab.
+## Topics included
 
-A streamlit app to explore the data can be found under the _Streamlit App_ tab. 
-
-Click on _Github_ to see the github repository with the python package.
-
+- Transformer Architecture
+- Retrieval-Augmented Generation (RAG)
+- Reasoning / Chain-of-Thought
+- Multimodal / Vision-Language Models
