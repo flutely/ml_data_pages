@@ -6,6 +6,18 @@ Reference for every function exposed by the `ml_research_trends` package.
 
 ---
 
+```{python}
+#| echo: false
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get the API key
+SEMANTIC_SCHOLAR_API_KEY = os.getenv('SEMANTIC_SCHOLAR_API_KEY')
+```
+
 ## `collect_topic_data`
 
 ```
@@ -47,7 +59,8 @@ A `pandas.DataFrame` with columns: `paper_id`, `title`, `authors`, `year`,
 ```{python}
 import ml_research_trends
 
-df = collect_topic_data(["chain of thought"], max_results_per_keyword=10)
+df = collect_topic_data(["chain of thought"], max_results_per_keyword=10, 
+api_key=SEMANTIC_SCHOLAR_API_KEY)
 ```
 
 ---
