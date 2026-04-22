@@ -91,8 +91,6 @@ print("Total papers:", len(df))
 ### Step 2: Summarize and analyze
 
 ```{python}
-from ml_research_trends import summarize_topic_data, analyze_topic_trends
-
 summary = summarize_topic_data(df)
 print("Total papers:", summary["total_papers"])
 print("Year range:", summary["year_min"], "-", summary["year_max"])
@@ -104,16 +102,15 @@ print(trends)
 
 ### Step 3: Make plots
 
+#### Year counts
+
 ```{python}
-from ml_research_trends import (
-    plot_topic_counts_by_year,
-    plot_landmark_timeline,
-    embed_and_plot_abstracts,
+plot_topic_counts_by_year(
+    trends, 
+    topic_name="Transformer Architecture"
 )
-
-plot_topic_counts_by_year(trends, topic_name="Transformer Architecture")
-
 ```
+#### Landmark Timeline
 
 ```python
 plot_landmark_timeline(
@@ -123,6 +120,10 @@ plot_landmark_timeline(
     topic_name="Transformer Architecture",
 )
 ```
+#### Embedding Abstracts
+
+Note: Embedding the first time will download the model (~8 GB) and cache the
+vectors to `cache_path`. After that, rerunning is fast.
 
 ```{python}
 embed_and_plot_abstracts(
@@ -133,6 +134,3 @@ embed_and_plot_abstracts(
     topic_name="Transformer Architecture"
 )
 ```
-
-Embedding the first time will download the model (~8 GB) and cache the
-vectors to `cache_path`. After that, rerunning is fast.
