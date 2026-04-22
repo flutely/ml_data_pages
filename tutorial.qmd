@@ -66,13 +66,63 @@ SEMANTIC_SCHOLAR_API_KEY=your_api_key_here
 
 First you need to create your dataset using the SemanticScholar API. You can do this using the `collect_topic_data` function.
 
-Pass in some keywords, your API key, and any other parameters.
+This queries Semantic Scholar for each keyword, de-duplicates the results,
+filters by year, and returns a tidy `pandas.DataFrame`. It also writes the
+DataFrame to CSV if `save_path` is given.
 
 ```{python}
-collect_topic_data(
-    keywords=["retrieval augmented generation", "RAG"],
-    max_results_per_keyword=100,
-    min_year=2020,
-    api_key=SEMANTIC_SCHOLAR_API_KEY
+df = collect_topic_data(
+    keywords=[
+        "self-attention neural network",
+        "multi-head attention",
+        "transformer language model",
+        "encoder decoder transformer",
+    ],
+    max_results_per_keyword=200,
+    min_year=2016,
+    max_year=2026,
+    save_path="transformer_papers.csv",
+)
+
+print(df[["title", "year", "citation_count", "venue"]].head())
+print("Total papers:", len(df))
+```
+
+### Step 2: Summarize and analyze
+
+```{python}
+from ml_research_trends import summarize_topic_data, analyze_topic_trends
+
+summary = summarize_topic_data(df)
+print("Total papers:", summary["total_papers"])
+print("Year range:", summary["year_min"], "-", summary["year_max"])
+print("Median citations:", summary["median_citations"])
+
+trends = analyze_topic_trends(df)
+print(trends)
+```
+
+### Step 3: Make plots
+
+```{python}
+from ml_research_trends import (
+    plot_topic_counts_by_year,
+    plot_landmark_timeline,
+    embed_and_plot_abstracts,
+)
+
+plot_topic_counts_by_year(trends, topic_name="Transformer Architecture")
+
+```
+
+```{python}
+embed_and_plot_abstracts(
+    df,
+    model_name_or_path="Qwen/Qwen3-Embedding-4B",
+    reducer="umap",
+    cache_path="transformer_embeddings.npy",
+    topic_name="Transformer Architecture",
+    save_path="transformer_umap.png",
+    html_path="transformer_umap.html",
 )
 ```
