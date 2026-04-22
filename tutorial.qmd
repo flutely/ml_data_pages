@@ -81,7 +81,7 @@ df = collect_topic_data(
     max_results_per_keyword=200,
     min_year=2016,
     max_year=2026,
-    save_path="transformer_papers.csv",
+    api_key=SEMANTIC_SCHOLAR_API_KEY
 )
 
 print(df[["title", "year", "citation_count", "venue"]].head())
@@ -122,7 +122,6 @@ embed_and_plot_abstracts(
     reducer="umap",
     cache_path="transformer_embeddings.npy",
     topic_name="Transformer Architecture",
-    save_path="transformer_umap.png",
-    html_path="transformer_umap.html",
+    api_key=SEMANTIC_SCHOLAR_API_KEY
 )
 ```

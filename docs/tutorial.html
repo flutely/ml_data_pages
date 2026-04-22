@@ -203,11 +203,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="importing" class="level2">
 <h2 class="anchored" data-anchor-id="importing">Importing</h2>
 <p>To import the entire package:</p>
-<div id="6948d79f" class="cell" data-execution_count="1">
+<div id="ed32a70f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ml_research_trends</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>To import individual functions:</p>
-<div id="b9f1ed84" class="cell" data-execution_count="2">
+<div id="c527d495" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ml_research_trends <span class="im">import</span> (</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    collect_topic_data,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    summarize_topic_data,</span>
@@ -221,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="setting-up-api-key" class="level2">
 <h2 class="anchored" data-anchor-id="setting-up-api-key">Setting up API Key</h2>
 <p>To load your API key from a <code>.env</code> file, use the <code>python-dotenv</code> package:</p>
-<div id="92f6d3fd" class="cell" data-execution_count="3">
+<div id="7d120fc6" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dotenv <span class="im">import</span> load_dotenv</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="step-1-gather-data">Step 1: Gather Data</h3>
 <p>First you need to create your dataset using the SemanticScholar API. You can do this using the <code>collect_topic_data</code> function.</p>
 <p>This queries Semantic Scholar for each keyword, de-duplicates the results, filters by year, and returns a tidy <code>pandas.DataFrame</code>. It also writes the DataFrame to CSV if <code>save_path</code> is given.</p>
-<div id="5527b34b" class="cell" data-execution_count="4">
+<div id="06ef91e3" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> collect_topic_data(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    keywords<span class="op">=</span>[</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">"self-attention neural network"</span>,</span>
@@ -252,111 +252,111 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    min_year<span class="op">=</span><span class="dv">2016</span>,</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    max_year<span class="op">=</span><span class="dv">2026</span>,</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    save_path<span class="op">=</span><span class="st">"transformer_papers.csv"</span>,</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[[<span class="st">"title"</span>, <span class="st">"year"</span>, <span class="st">"citation_count"</span>, <span class="st">"venue"</span>]].head())</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total papers:"</span>, <span class="bu">len</span>(df))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[4]</span><span class="ansi-green-fg">, line 1</span>
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> df = collect_topic_data(
-<span class="ansi-green-fg">      2</span>     keywords=[
-<span class="ansi-green-fg">      3</span>         <span class="ansi-yellow-fg">"self-attention neural network"</span>,
-<span class="ansi-green-fg">      4</span>         <span class="ansi-yellow-fg">"multi-head attention"</span>,
-
-<span class="ansi-cyan-fg">File </span><span class="ansi-green-fg">~\Desktop\Stat_386_Real\Project\ml_data_pages\.venv\Lib\site-packages\ml_research_trends\data.py:63</span>, in <span class="ansi-cyan-fg">collect_topic_data</span><span class="ansi-blue-fg">(keywords, max_results_per_keyword, min_year, max_year, save_path, api_key, request_delay, max_retries, fields)</span>
-<span class="ansi-green-fg">     60</span>     api_key = os.getenv(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">API_KEY</span><span class="ansi-yellow-fg">"</span>) <span style="font-weight:bold;color:rgb(175,0,255)">or</span> os.getenv(<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">SEMANTIC_SCHOLAR_API_KEY</span><span class="ansi-yellow-fg">"</span>)
-<span class="ansi-green-fg">     62</span> <span style="font-weight:bold;color:rgb(0,135,0)">if</span> <span style="font-weight:bold;color:rgb(175,0,255)">not</span> api_key:
-<span class="ansi-green-fg">---&gt; </span><span class="ansi-green-fg">63</span>     <span style="font-weight:bold;color:rgb(0,135,0)">raise</span> <span style="font-weight:bold;color:rgb(215,95,95)">ValueError</span>(
-<span class="ansi-green-fg">     64</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">Missing API key. Pass api_key=... or set API_KEY / </span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">     65</span>         <span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">SEMANTIC_SCHOLAR_API_KEY in your environment.</span><span class="ansi-yellow-fg">"</span>
-<span class="ansi-green-fg">     66</span>     )
-<span class="ansi-green-fg">     68</span> headers = {<span class="ansi-yellow-fg">"</span><span class="ansi-yellow-fg">x-api-key</span><span class="ansi-yellow-fg">"</span>: api_key}
-<span class="ansi-green-fg">     69</span> fields = fields <span style="font-weight:bold;color:rgb(175,0,255)">or</span> DEFAULT_FIELDS
-
-<span class="ansi-red-fg">ValueError</span>: Missing API key. Pass api_key=... or set API_KEY / SEMANTIC_SCHOLAR_API_KEY in your environment.</pre>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>SEMANTIC_SCHOLAR_API_KEY</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[[<span class="st">"title"</span>, <span class="st">"year"</span>, <span class="st">"citation_count"</span>, <span class="st">"venue"</span>]].head())</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total papers:"</span>, <span class="bu">len</span>(df))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Fetching papers:   0%|          | 0/8 [00:00&lt;?, ?req/s]Fetching papers:   0%|          | 0/8 [00:00&lt;?, ?req/s, keyword=self-attention neural network]Fetching papers:  12%|█▎        | 1/8 [00:01&lt;00:11,  1.61s/req, keyword=self-attention neural network]Fetching papers:  12%|█▎        | 1/8 [00:01&lt;00:11,  1.61s/req, collected=0, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 2/8 [00:03&lt;00:09,  1.51s/req, collected=0, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 2/8 [00:03&lt;00:09,  1.51s/req, collected=100, keyword=self-attention neural network]Fetching papers:  25%|██▌       | 2/8 [00:03&lt;00:09,  1.51s/req, keyword=multi-head attention]                        Fetching papers:  38%|███▊      | 3/8 [00:04&lt;00:06,  1.35s/req, keyword=multi-head attention]Fetching papers:  38%|███▊      | 3/8 [00:04&lt;00:06,  1.35s/req, collected=199, keyword=multi-head attention]Fetching papers:  50%|█████     | 4/8 [00:06&lt;00:06,  1.53s/req, collected=199, keyword=multi-head attention]Fetching papers:  50%|█████     | 4/8 [00:06&lt;00:06,  1.53s/req, collected=299, keyword=multi-head attention]Fetching papers:  50%|█████     | 4/8 [00:06&lt;00:06,  1.53s/req, keyword=transformer language model]         Fetching papers:  62%|██████▎   | 5/8 [00:07&lt;00:04,  1.58s/req, keyword=transformer language model]Fetching papers:  62%|██████▎   | 5/8 [00:07&lt;00:04,  1.58s/req, collected=397, keyword=transformer language model]Fetching papers:  75%|███████▌  | 6/8 [00:09&lt;00:03,  1.59s/req, collected=397, keyword=transformer language model]Fetching papers:  75%|███████▌  | 6/8 [00:09&lt;00:03,  1.59s/req, collected=497, keyword=transformer language model]Fetching papers:  75%|███████▌  | 6/8 [00:09&lt;00:03,  1.59s/req, keyword=encoder decoder transformer]              Fetching papers:  88%|████████▊ | 7/8 [00:10&lt;00:01,  1.47s/req, keyword=encoder decoder transformer]Fetching papers:  88%|████████▊ | 7/8 [00:10&lt;00:01,  1.47s/req, collected=596, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 8/8 [00:11&lt;00:00,  1.40s/req, collected=596, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 8/8 [00:11&lt;00:00,  1.40s/req, collected=695, keyword=encoder decoder transformer]Fetching papers: 100%|██████████| 8/8 [00:11&lt;00:00,  1.47s/req, collected=695, keyword=encoder decoder transformer]</code></pre>
 </div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                               title  year  citation_count  \
+0  Self-attention neural network for solving corr...  2025              17   
+1  Three-dimensional DenseNet self-attention neur...  2022              81   
+2  Solving the fractional quantum Hall problem wi...  2024              27   
+3  Crystallographic phase identifier of a convolu...  2024               8   
+4  A new deep self-attention neural network for G...  2023              19   
+
+               venue  
+0  Physical review B  
+1                NaN  
+2  Physical review B  
+3              IUCrJ  
+4      GPS Solutions  
+Total papers: 790</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code></code></pre>
 </div>
 </div>
 </section>
 <section id="step-2-summarize-and-analyze" class="level3">
 <h3 class="anchored" data-anchor-id="step-2-summarize-and-analyze">Step 2: Summarize and analyze</h3>
-<div id="00cf9acb" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ml_research_trends <span class="im">import</span> summarize_topic_data, analyze_topic_trends</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summarize_topic_data(df)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total papers:"</span>, summary[<span class="st">"total_papers"</span>])</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Year range:"</span>, summary[<span class="st">"year_min"</span>], <span class="st">"-"</span>, summary[<span class="st">"year_max"</span>])</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Median citations:"</span>, summary[<span class="st">"median_citations"</span>])</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>trends <span class="op">=</span> analyze_topic_trends(df)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(trends)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[5]</span><span class="ansi-green-fg">, line 3</span>
-<span class="ansi-green-fg">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">from</span> ml_research_trends <span style="font-weight:bold;color:rgb(0,135,0)">import</span> summarize_topic_data, analyze_topic_trends
-<span class="ansi-green-fg">      2</span> 
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">3</span> summary = summarize_topic_data(df)
-<span class="ansi-green-fg">      4</span> print(<span class="ansi-yellow-fg">"Total papers:"</span>, summary[<span class="ansi-yellow-fg">"total_papers"</span>])
-<span class="ansi-green-fg">      5</span> print(<span class="ansi-yellow-fg">"Year range:"</span>, summary[<span class="ansi-yellow-fg">"year_min"</span>], <span class="ansi-yellow-fg">"-"</span>, summary[<span class="ansi-yellow-fg">"year_max"</span>])
-<span class="ansi-green-fg">      6</span> print(<span class="ansi-yellow-fg">"Median citations:"</span>, summary[<span class="ansi-yellow-fg">"median_citations"</span>])
-
-<span class="ansi-red-fg">NameError</span>: name 'df' is not defined</pre>
-</div>
+<div id="f845cf20" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ml_research_trends <span class="im">import</span> summarize_topic_data, analyze_topic_trends</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summarize_topic_data(df)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Total papers:"</span>, summary[<span class="st">"total_papers"</span>])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Year range:"</span>, summary[<span class="st">"year_min"</span>], <span class="st">"-"</span>, summary[<span class="st">"year_max"</span>])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Median citations:"</span>, summary[<span class="st">"median_citations"</span>])</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>trends <span class="op">=</span> analyze_topic_trends(df)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(trends)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Total papers: 790
+Year range: 2016 - 2026
+Median citations: 54.5
+    year  paper_count  average_citations  median_citations
+0   2016            1         269.000000             269.0
+1   2017            3         283.000000              39.0
+2   2018           16         219.937500              73.0
+3   2019           67        1241.522388              75.0
+4   2020           98         322.969388              64.5
+5   2021          149         614.120805              75.0
+6   2022          141         349.460993              65.0
+7   2023          163         186.073620              51.0
+8   2024          125          67.152000              36.0
+9   2025           24          99.750000              29.5
+10  2026            3          55.333333               0.0</code></pre>
 </div>
 </div>
 </section>
 <section id="step-3-make-plots" class="level3">
 <h3 class="anchored" data-anchor-id="step-3-make-plots">Step 3: Make plots</h3>
-<div id="b07a9b29" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ml_research_trends <span class="im">import</span> (</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    plot_topic_counts_by_year,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    plot_landmark_timeline,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    embed_and_plot_abstracts,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plot_topic_counts_by_year(trends, topic_name<span class="op">=</span><span class="st">"Transformer Architecture"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="c1dd9d37" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> ml_research_trends <span class="im">import</span> (</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    plot_topic_counts_by_year,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    plot_landmark_timeline,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    embed_and_plot_abstracts,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plot_topic_counts_by_year(trends, topic_name<span class="op">=</span><span class="st">"Transformer Architecture"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tutorial_files/figure-html/cell-7-output-1.png" width="944" height="560" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+<figure class="figure">
+<p><img src="tutorial_files/figure-html/cell-7-output-2.png" width="944" height="560" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="1bfcac01" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>embed_and_plot_abstracts(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    model_name_or_path<span class="op">=</span><span class="st">"Qwen/Qwen3-Embedding-4B"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    reducer<span class="op">=</span><span class="st">"umap"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    cache_path<span class="op">=</span><span class="st">"transformer_embeddings.npy"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    topic_name<span class="op">=</span><span class="st">"Transformer Architecture"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    api_key<span class="op">=</span>SEMANTIC_SCHOLAR_API_KEY</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
 <pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[6]</span><span class="ansi-green-fg">, line 7</span>
-<span class="ansi-green-fg">      3</span>     plot_landmark_timeline,
-<span class="ansi-green-fg">      4</span>     embed_and_plot_abstracts,
-<span class="ansi-green-fg">      5</span> )
-<span class="ansi-green-fg">      6</span> 
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">7</span> plot_topic_counts_by_year(trends, topic_name=<span class="ansi-yellow-fg">"Transformer Architecture"</span>)
-
-<span class="ansi-red-fg">NameError</span>: name 'trends' is not defined</pre>
-</div>
-</div>
-</div>
-<div id="8debbcf6" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>embed_and_plot_abstracts(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    model_name_or_path<span class="op">=</span><span class="st">"Qwen/Qwen3-Embedding-4B"</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    reducer<span class="op">=</span><span class="st">"umap"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    cache_path<span class="op">=</span><span class="st">"transformer_embeddings.npy"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    topic_name<span class="op">=</span><span class="st">"Transformer Architecture"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    save_path<span class="op">=</span><span class="st">"transformer_umap.png"</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    html_path<span class="op">=</span><span class="st">"transformer_umap.html"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-error">
-<div class="ansi-escaped-output">
-<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 2</span>
-<span class="ansi-green-fg">      1</span> embed_and_plot_abstracts(
-<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">2</span>     df,
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[7]</span><span class="ansi-green-fg">, line 1</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">1</span> embed_and_plot_abstracts(
+<span class="ansi-green-fg">      2</span>     df,
 <span class="ansi-green-fg">      3</span>     model_name_or_path=<span class="ansi-yellow-fg">"Qwen/Qwen3-Embedding-4B"</span>,
 <span class="ansi-green-fg">      4</span>     reducer=<span class="ansi-yellow-fg">"umap"</span>,
-<span class="ansi-green-fg">      5</span>     cache_path=<span class="ansi-yellow-fg">"transformer_embeddings.npy"</span>,
 
-<span class="ansi-red-fg">NameError</span>: name 'df' is not defined</pre>
+<span class="ansi-red-fg">TypeError</span>: embed_and_plot_abstracts() got an unexpected keyword argument 'api_key'</pre>
 </div>
 </div>
 </div>
