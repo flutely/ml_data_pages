@@ -182,12 +182,12 @@ A DataFrame with columns `paper_id`, `title`, `year`, `x`, `y`.
 **Example**
 
 ```{python}
-# coords = embed_and_plot_abstracts(
-#    df,
-#    model_name_or_path="Qwen/Qwen3-Embedding-4B",
-#    reducer="umap",
-#    cache_path="transformer_embeddings.npy",
-#)
+coords = embed_and_plot_abstracts(
+    df,
+    model_name_or_path="Qwen/Qwen3-Embedding-4B",
+    reducer="umap",
+    cache_path="cache/transformer_embeddings.npy",
+)
 None
 ```
 

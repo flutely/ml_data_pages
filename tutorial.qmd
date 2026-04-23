@@ -138,12 +138,12 @@ Note: Embedding the first time will download the model (~8 GB) and cache the
 vectors to `cache_path`. After that, rerunning is fast.
 
 ```{python}
-# embed_and_plot_abstracts(
-#    df,
-#    model_name_or_path="Qwen/Qwen3-Embedding-4B",
-#    reducer="umap",
-#    cache_path="transformer_embeddings.npy",
-#    topic_name="Transformer Architecture"
-#)
+embed_and_plot_abstracts(
+    df,
+    model_name_or_path="Qwen/Qwen3-Embedding-4B",
+    reducer="umap",
+    cache_path="cache/transformer_embeddings.npy",
+    topic_name="Transformer Architecture"
+)
 None
 ```
