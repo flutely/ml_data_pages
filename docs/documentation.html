@@ -185,9 +185,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Reference for every function exposed by the <code>ml_research_trends</code> package.</p>
 <hr>
-<pre class="{bash}"><code>#| echo: false
-#| results: hide
-uv add ml-research-trends</code></pre>
 <section id="collect_topic_data" class="level2">
 <h2 class="anchored" data-anchor-id="collect_topic_data"><code>collect_topic_data</code></h2>
 <pre><code>collect_topic_data(
@@ -216,9 +213,9 @@ uv add ml-research-trends</code></pre>
 <p><strong>Returns</strong></p>
 <p>A <code>pandas.DataFrame</code> with columns: <code>paper_id</code>, <code>title</code>, <code>authors</code>, <code>year</code>, <code>citation_count</code>, <code>abstract</code>, <code>url</code>, <code>venue</code>, <code>keyword</code>.</p>
 <p><strong>Example</strong></p>
-<div id="f0db3836" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> collect_topic_data([<span class="st">"chain of thought"</span>], max_results_per_keyword<span class="op">=</span><span class="dv">10</span>, </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>api_key<span class="op">=</span>SEMANTIC_SCHOLAR_API_KEY)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="310c76c4" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> collect_topic_data([<span class="st">"chain of thought"</span>], max_results_per_keyword<span class="op">=</span><span class="dv">100</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>api_key<span class="op">=</span>SEMANTIC_SCHOLAR_API_KEY)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -227,11 +224,11 @@ uv add ml-research-trends</code></pre>
 <pre><code>summarize_topic_data(df) -&gt; dict</code></pre>
 <p>Return a dictionary of quick stats about a topic DataFrame: <code>total_papers</code>, <code>year_min</code>, <code>year_max</code>, <code>average_citations</code>, <code>median_citations</code>, <code>missing_abstracts</code>, and <code>top_venues</code>.</p>
 <p><strong>Example</strong></p>
-<div id="3b1c2d71" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summarize_topic_data(df)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary[<span class="st">"total_papers"</span>], summary[<span class="st">"year_min"</span>], summary[<span class="st">"year_max"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e844bf03" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> summarize_topic_data(df)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(summary[<span class="st">"total_papers"</span>], summary[<span class="st">"year_min"</span>], summary[<span class="st">"year_max"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>10 2022 2025</code></pre>
+<pre><code>100 2022 2025</code></pre>
 </div>
 </div>
 <hr>
@@ -241,8 +238,8 @@ uv add ml-research-trends</code></pre>
 <pre><code>analyze_topic_trends(df) -&gt; pandas.DataFrame</code></pre>
 <p>Group papers by year and compute <code>paper_count</code>, <code>average_citations</code>, and <code>median_citations</code>. Useful input for <code>plot_topic_counts_by_year</code>.</p>
 <p><strong>Example</strong></p>
-<div id="c09c7ae9" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>trends <span class="op">=</span> analyze_topic_trends(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="9e2fedfa" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>trends <span class="op">=</span> analyze_topic_trends(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
@@ -257,9 +254,9 @@ uv add ml-research-trends</code></pre>
 ) -&gt; matplotlib.figure.Figure</code></pre>
 <p>Bar chart of papers per year. Expects the DataFrame returned by <code>analyze_topic_trends</code>.</p>
 <p><strong>Example</strong></p>
-<div id="f8670f97" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plot_topic_counts_by_year(trends, topic_name<span class="op">=</span><span class="st">"RAG"</span>, save_path<span class="op">=</span><span class="st">"rag.png"</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="va">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="29a564e4" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>plot_topic_counts_by_year(trends, topic_name<span class="op">=</span><span class="st">"RAG"</span>, save_path<span class="op">=</span><span class="st">"rag.png"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="va">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -296,31 +293,29 @@ uv add ml-research-trends</code></pre>
 <p><strong>Returns</strong></p>
 <p>A DataFrame with columns <code>paper_id</code>, <code>title</code>, <code>year</code>, <code>x</code>, <code>y</code>.</p>
 <p><strong>Example</strong></p>
-<div id="f5b73cf9" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> embed_and_plot_abstracts(</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    model_name_or_path<span class="op">=</span><span class="st">"Qwen/Qwen3-Embedding-4B"</span>,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    reducer<span class="op">=</span><span class="st">"umap"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    cache_path<span class="op">=</span><span class="st">"cache/transformer_embeddings.npy"</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="va">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.</code></pre>
-</div>
+<div id="920d3d50" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>coords <span class="op">=</span> embed_and_plot_abstracts(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    model_name_or_path<span class="op">=</span><span class="st">"Qwen/Qwen3-Embedding-4B"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    reducer<span class="op">=</span><span class="st">"umap"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    cache_path<span class="op">=</span><span class="st">"cache/docs_embeddings.npy"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="va">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Loading Qwen/Qwen3-Embedding-4B on cpu...</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Loading weights:   0%|          | 0/398 [00:00&lt;?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00&lt;00:00, 14967.17it/s]
-Batches:   0%|          | 0/2 [00:00&lt;?, ?it/s]Batches:  50%|█████     | 1/2 [11:10&lt;11:10, 670.07s/it]Batches: 100%|██████████| 2/2 [12:37&lt;00:00, 327.38s/it]Batches: 100%|██████████| 2/2 [12:37&lt;00:00, 378.79s/it]</code></pre>
+<pre><code>Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading weights:   0%|          | 0/398 [00:00&lt;?, ?it/s]Loading weights: 100%|██████████| 398/398 [00:00&lt;00:00, 10316.94it/s]
+Batches:   0%|          | 0/12 [00:00&lt;?, ?it/s]Batches:   8%|▊         | 1/12 [11:09&lt;2:02:41, 669.27s/it]Batches:  17%|█▋        | 2/12 [22:11&lt;1:50:53, 665.38s/it]Batches:  25%|██▌       | 3/12 [32:43&lt;1:37:30, 650.06s/it]Batches:  33%|███▎      | 4/12 [58:50&lt;2:14:56, 1012.03s/it]Batches:  42%|████▏     | 5/12 [1:08:48&lt;1:40:37, 862.51s/it]Batches:  50%|█████     | 6/12 [1:18:37&lt;1:16:58, 769.79s/it]Batches:  58%|█████▊    | 7/12 [1:27:17&lt;57:19, 687.85s/it]  Batches:  67%|██████▋   | 8/12 [1:35:01&lt;41:06, 616.58s/it]Batches:  75%|███████▌  | 9/12 [1:42:22&lt;28:05, 561.72s/it]Batches:  83%|████████▎ | 10/12 [1:48:52&lt;16:57, 508.92s/it]Batches:  92%|█████████▏| 11/12 [1:53:57&lt;07:26, 446.33s/it]Batches: 100%|██████████| 12/12 [1:58:36&lt;00:00, 395.41s/it]Batches: 100%|██████████| 12/12 [1:58:36&lt;00:00, 593.01s/it]</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Saved embeddings to cache/transformer_embeddings.npy</code></pre>
+<pre><code>Saved embeddings to cache/docs_embeddings.npy</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="documentation_files/figure-html/cell-7-output-5.png" width="1041" height="656" class="figure-img"></p>
+<p><img src="documentation_files/figure-html/cell-7-output-4.png" width="1041" height="656" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -341,14 +336,14 @@ Batches:   0%|          | 0/2 [00:00&lt;?, ?it/s]Batches:  50%|█████  
 ) -&gt; pandas.DataFrame</code></pre>
 <p>Line plot of papers per year with a vertical dashed line marking a landmark paper’s date. Also prints how many papers came before vs.&nbsp;after the landmark.</p>
 <p><strong>Example</strong></p>
-<div id="57018774" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plot_landmark_timeline(</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    landmark_date<span class="op">=</span><span class="st">"2020-05-22"</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    landmark_label<span class="op">=</span><span class="st">"Lewis et al. — RAG"</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    topic_name<span class="op">=</span><span class="st">"RAG"</span>,</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="va">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e2862e8d" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plot_landmark_timeline(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    df,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    landmark_date<span class="op">=</span><span class="st">"2020-05-22"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    landmark_label<span class="op">=</span><span class="st">"Lewis et al. — RAG"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    topic_name<span class="op">=</span><span class="st">"RAG"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="va">None</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">

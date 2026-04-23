@@ -6,12 +6,6 @@ Reference for every function exposed by the `ml_research_trends` package.
 
 ---
 
-```{bash}
-#| echo: false
-#| results: hide
-uv add ml-research-trends
-```
-
 ```{python}
 #| echo: false
 from dotenv import load_dotenv
@@ -80,7 +74,7 @@ A `pandas.DataFrame` with columns: `paper_id`, `title`, `authors`, `year`,
 
 ```{python}
 #| output: false
-df = collect_topic_data(["chain of thought"], max_results_per_keyword=10, 
+df = collect_topic_data(["chain of thought"], max_results_per_keyword=100, 
 api_key=SEMANTIC_SCHOLAR_API_KEY)
 ```
 
@@ -186,7 +180,7 @@ coords = embed_and_plot_abstracts(
     df,
     model_name_or_path="Qwen/Qwen3-Embedding-4B",
     reducer="umap",
-    cache_path="cache/transformer_embeddings.npy",
+    cache_path="cache/docs_embeddings.npy",
 )
 None
 ```

@@ -88,7 +88,7 @@ df = collect_topic_data(
         "transformer language model",
         "encoder decoder transformer",
     ],
-    max_results_per_keyword=5,
+    max_results_per_keyword=50,
     min_year=2016,
     max_year=2026,
     api_key=SEMANTIC_SCHOLAR_API_KEY
@@ -142,7 +142,7 @@ embed_and_plot_abstracts(
     df,
     model_name_or_path="Qwen/Qwen3-Embedding-4B",
     reducer="umap",
-    cache_path="cache/transformer_embeddings.npy",
+    cache_path="cache/tutorial_embeddings.npy",
     topic_name="Transformer Architecture"
 )
 None
